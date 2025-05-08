@@ -1,6 +1,6 @@
 # Jiangao Peng(彭建高 Cake)  
 ![alt text](image.png)
-- Chinese🇨🇳、客家人（讲客的）
+- Chinese🇨🇳、客家人
 - Email📮: wyd1n910@gmail.com
 - 👨🏻📢:Call me Cake or Jiangao please
 ## Education  

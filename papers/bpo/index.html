@@ -58,7 +58,7 @@ Large language models (LLMs) have shown impressive success in various applicatio
   <meta itemprop="description" content="论文阅读笔记 论文信息 标题: Black-Box Prompt Optimization: Aligning Large Language Models without Model Training 作者: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 , Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1† 发表时间: 2024年8月 期刊/会议: ACL 2024 长论文 摘要 Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned with human intents, which calls for additional treatments on them; that is, the alignment problem. To make LLMs better follow user instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually expensive in terms of GPU computing; even worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work, we take a different perspective—Black-Box Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to suit LLMs’ input understanding, so as to best realize users’ intents without updating LLMs’ parameters. BPO leverages human preferences to optimize prompts, thus making it superior to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the win rate against its original version and 10% for GPT-4. Notably, the BPO-aligned LLMs can outperform the same models aligned by PPO and DPO, and it also brings additional performance gains when combining BPO with PPO or DPO. Code and datasets are released at https://github.com/thu-coai/BPO.">
   <meta itemprop="datePublished" content="2025-12-25T17:18:37+08:00">
   <meta itemprop="dateModified" content="2025-12-25T17:18:37+08:00">
-  <meta itemprop="wordCount" content="321">
+  <meta itemprop="wordCount" content="414">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Black-Box Prompt Optimization: Aligning Large Language Models without Model Training / 黑盒提示词优化：无需模型训练的对大语言模型的黑盒提示词优化">
   <meta name="twitter:description" content="论文阅读笔记 论文信息 标题: Black-Box Prompt Optimization: Aligning Large Language Models without Model Training 作者: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 , Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1† 发表时间: 2024年8月 期刊/会议: ACL 2024 长论文 摘要 Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned with human intents, which calls for additional treatments on them; that is, the alignment problem. To make LLMs better follow user instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually expensive in terms of GPU computing; even worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work, we take a different perspective—Black-Box Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to suit LLMs’ input understanding, so as to best realize users’ intents without updating LLMs’ parameters. BPO leverages human preferences to optimize prompts, thus making it superior to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the win rate against its original version and 10% for GPT-4. Notably, the BPO-aligned LLMs can outperform the same models aligned by PPO and DPO, and it also brings additional performance gains when combining BPO with PPO or DPO. Code and datasets are released at https://github.com/thu-coai/BPO.">
@@ -163,6 +163,35 @@ Large language models (LLMs) have shown impressive success in various applicatio
 <li>我们从<strong>提示词解释、澄清、丰富及安全性增强</strong>四个维度，系统分析了BPO如何优化原始提示；同时证明：在对齐大语言模型（LLM）时，BPO相较于现有偏好学习算法具有<strong>更好的可解释性</strong>。</li>
 </ul>
 <h3 id="2-相关工作">2. 相关工作</h3>
+<p>在大规模语料上预训练的大型语言模型（LLMs）能够生成流畅的文本，但在遵循用户指令方面尚未很好地对齐。因此，使大语言模型与人类意图保持一致已成为一个重要的研究问题。现有的对齐方法大多遵循Ouyang等人（2022）提出的范式，主要包括两个阶段：监督微调（SFT）和基于人类反馈的强化学习（RLHF）。</p>
+<p><strong>监督微调（SFT）</strong>。SFT对齐赋予大型语言模型初步的指令跟随能力。然而，它严重依赖于大量高质量的微调数据。由于人工编写数据的成本高昂，基于少量人工构建的种子集进行自我指导式数据增强（Wang等，2022）已成为学术界的主流方法（Taori等，2023；BELLEGroup，2023）。尽管如此，SFT对齐仍存在幻觉问题、可扩展性不足以及对人类偏好理解较差等缺陷。</p>
+<p>基于人类反馈的强化学习（RLHF）。RLHF对齐旨在进一步使大型语言模型与可扩展的反馈保持一致。其标准框架（Stiennon等，2020；Ouyang等，2022）包括奖励建模与策略训练两个阶段。由于人工标注成本较高（Ouyang等，2022；Ji等，2024b），一些研究开始探索引入人工智能反馈，并取得了令人瞩目的成果（Bai等，2022b；Lee等，2023）。此外，考虑到RLHF流程繁琐且强化学习训练不稳定，部分工作尝试采用其他方法来从偏好反馈中学习。Rafailov等人（2023）将反馈机制引入损失函数的设计中。进一步地，也有研究探索自我改进（Yuan等，2024；Xu等，2024）以及智能体之间的对齐（Lai等，2024）。</p>
+<p>提示工程与提示调优。自预训练语言模型提出以来，利用提示调优来完成自然语言处理任务逐渐成为一种新的范式（Brown等，2020a；Liu等，2021）。提示调优主要分为两种类型：硬提示调优与软提示调优。硬提示调优，亦称提示工程，通常需要大量的人工投入。因此，许多研究致力于探索如何自动化这一过程，其起源可追溯至AutoPrompt（Shin等，2020）。近年来，随着大型语言模型的出现，利用语言模型进行自动化提示工程展现出卓越的性能（Zhou等，2022；Yang等，2023；Pryzant等，2023；Pan等，2023；Li等，2024）。然而，现有方法主要聚焦于特定任务而非模型对齐，并且需要为每个任务单独搜索合适的提示。此外，这些方法通常需针对单一模型进行优化，因而无法在所有模型中通用，这进一步限制了它们的适用性。软提示调优（Liu等，2021；Lester等，2021；Li和Liang，2021）通过在嵌入空间中进行优化，而非局限于固定的词表，从而进一步提升了效果，但它需要对模型参数进行调优，灵活性不如硬提示调优。</p>
+<p>提示调优与模型训练一直是提升预训练模型性能的两个并行路径。目前的模型对齐策略主要侧重于调整模型以遵循用户意图和指令，而鲜有研究探索即插即用的对齐工具（Ji等，2024a）。在大型语言模型的背景下，模型规模已变得非常庞大，训练甚至获取（例如基于API的模型）都十分困难。因此，我们认为提示优化值得引起重视，并且在不修改大型语言模型本身的前提下，仅通过优化输入提示即可实现模型对齐。</p>
+<h3 id="3-黑盒提示词优化bpo2025年12月27日-2300-0058">3 黑盒提示词优化（BPO）（2025年12月27日 23:00-00:58）</h3>
+<p><img src="/images/papers/bpo/bpo_f2.png" alt="BPO model">
+图2：BPO（黑盒提示优化）包含三个主要步骤：收集反馈数据（我们采用开源的反馈数据）、基于反馈数据构建提示优化对，以及利用这些提示对训练一个提示优化模型。通过这种方式，BPO充当了人类与AI之间的“翻译器”，将人类的提示优化为更适配AI生成的形式，从而获得更符合人类偏好的响应，同时将模型本身视为黑盒。</p>
+<p>BPO的整体流程如图2所示。BPO旨在通过优化输入提示来增强模型输出与人类偏好之间的一致性。为此，我们首先收集若干带有人类偏好标注的指令微调数据集，并对数据进行细致整理与低质量样本过滤。随后，我们利用大语言模型（LLM）捕捉人类偏好与不偏好响应之间的差异，并基于此差异使用LLM对输入进行优化。由此，我们得到一组原始指令及其改进后的版本，并进一步训练一个序列到序列（sequence-to-sequence）模型，以实现对用户输入的自动优化。</p>
+<h4 id="31-任务定义">3.1 任务定义</h4>
+<p>如上所述，我们的任务是优化用户输入，以帮助大语言模型（LLMs）生成更好的回复。形式上，我们将用户输入表示为 X_user。我们的目标是构建一个函数 F，将 <code>X_user</code> 映射到其优化版本，记为 <code>X_opt</code>。为此，我们引入了带注释的人类偏好数据，其中偏好的回复代表良好的模型输出，而另一个则代表较差的输出。通过捕捉这些偏好数据之间的差异，我们可以将人类偏好的属性融入到用户指令中，使其更符合大语言模型的能力范围，从而使大语言模型的输出更好地与人类偏好保持一致。受近期利用大语言模型作为评估器的工作启发（Wang et al., 2023; Zheng et al., 2023），我们认为大语言模型具备理解各种回复中不同特征的能力。因此，我们利用大语言模型来获取 X_opt。具体而言，每个样本表示为 (X_user, Y_good, Y_bad)，其中 Y_good 代表偏好的回复，Y_bad 代表不偏好的回复。因此，基于大语言模型的提示优化过程可表示为 <code>X_opt = LLM(X_user, Y_good, Y_bad)</code>。最后，我们通过在 (X_user, X_opt) 对上训练一个较小的序列到序列（seq2seq）模型来构建 F 函数。</p>
+<h4 id="32-训练数据构造">3.2 训练数据构造</h4>
+<p><img src="/images/papers/bpo/bpo_t1.png" alt="表1：偏好数据统计。">
+表1：偏好数据统计。我们从开源提示数据集中采样提示，并通过筛选形成偏好训练数据集。</p>
+<p>为构建优化后的提示（prompt），我们首先收集带有人类偏好标注的数据集。总体而言，我们使用了4个带有人类偏好标注的指令微调数据集（具体见表1）。这些数据集的详细描述见附录A。</p>
+<p>在收集并重新格式化这些数据集后，我们通过<strong>人工设计的规则</strong>（例如，过短的指令往往质量较低）仔细剔除低质量实例，并利用**自BLEU（self-BLEU）**进行严格的多样性过滤。最终，我们得到了14,000条多样化的样本，格式均为<code>(X_user, Y_good, Y_bad)</code>（用户输入、偏好回复、非偏好回复）。</p>
+<p>在本研究中，我们主要关注<strong>单轮回复生成</strong>任务，多轮对话场景将留待未来工作探索。</p>
+<p>随后，我们利用ChatGPT（OpenAI, 2022）对这些指令进行优化。经过细致的<strong>提示工程</strong>（prompt engineering）调整后，我们针对不同的数据格式采用了两类提示（具体示例见附录B）。接下来，我们通过<strong>基于规则的方法</strong>进行质量过滤，剔除错误的优化结果（例如，格式错误的内容）。</p>
+<p>完成上述全流程后，我们的数据集包含约14,000对<strong>优化前后的指令</strong>，最终分布如表1所示。<strong>总体 distinct 分数</strong>（Li et al., 2016）表明我们的数据集具有高度多样性。</p>
+<h4 id="33-模型训练">3.3 模型训练</h4>
+<p>基于构建的数据集，我们学习了一个小型**序列到序列（sequence-to-sequence, seq2seq）**模型，以实现对用户指令的自动优化。形式化地，我们在给定输入<code>X_user</code>的条件下生成优化后的输入<code>X_opt</code>，其损失函数定义如下：</p>
+<p><img src="/images/papers/bpo/bpo_g1.png" alt="公式1">
+公式1</p>
+<p>其中，$N$ 为 $X_{\text{opt}}$ 的长度，$x_t$ 表示 $X_{\text{opt}}$ 中的第 $t$ 个token。在本研究中，我们选择以 <strong>llama2-7b-chat</strong> 作为骨干模型——因为我们相信，更强的模型能更好地学习 $X_{\text{user}}$ 与 $X_{\text{opt}}$ 之间的<strong>隐式偏好映射</strong>（implicit preference mapping）。</p>
+<p>与此同时，7B参数规模的模型在大语言模型（LLMs）中属于参数量较小的类别，这使其在训练和推理阶段更具效率。关于模型规模扩展的探索，我们将留待未来工作。</p>
+<h4 id="34-和现存的方法进行比较">3.4 和现存的方法进行比较</h4>
+<p>如表2所示，<strong>BPO</strong>（本文提出的方法）相较于现有对齐方法展现出若干显著优势。尽管各类方法的终极目标都是让大语言模型（LLMs）的输出契合人类偏好，但RLHF（Ouyang et al., 2022）与DPO（Rafailov et al., 2023）是通过<strong>修改LLM参数</strong>来拟合人类偏好；而BPO则从<strong>输入侧</strong>切入——优化用户提示（prompt）以使其更适配模型特性，进而提升模型输出与人类偏好的对齐度。</p>
+<p>此外，由于BPO不改变LLM的参数，它可应用于<strong>API型模型</strong>（如通过接口调用的闭源模型）；而PPO与DPO仅能用于<strong>白盒模型</strong>（需访问模型内部参数的开源模型）。与OPRO等提示工程方法相比，BPO更具通用性：OPRO需针对特定任务搜索重写提示，且<strong>不进行样本级优化</strong>——它在每个任务中对所有样本使用同一学习到的提示，易导致稳定性不足。</p>
+<p>更进一步，PPO、DPO与OPRO仅能优化<strong>特定LLM</strong>；而BPO一旦训练完成，便具有<strong>模型无关性</strong>（model-agnostic）。如第3.1节所述，我们的目标是学习从用户提示到优化提示的<strong>通用映射</strong>（遵循人类偏好）——这一目标通过在训练数据中纳入<strong>多LLM的生成结果</strong>实现。对人类偏好的融入，使BPO的表现优于直接用LLM（如ChatGPT）进行提示优化的方式。</p>
 
       </main>
       <aside class="flex-ns mt5">
@@ -206,5 +235,21 @@ Large language models (LLMs) have shown impressive success in various applicatio
     </ul>
   </div>
 </footer>
+
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']], 
+      displayMath: [['$$', '$$'], ['\\[', '\\]']], 
+      processEscapes: true 
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
   </body>
 </html>

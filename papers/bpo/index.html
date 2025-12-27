@@ -41,10 +41,10 @@ Large language models (LLMs) have shown impressive success in various applicatio
     
 
     
-      <link rel="canonical" href="http://localhost:1313/papers/my-first-paper-review/">
+      <link rel="canonical" href="http://localhost:1313/papers/bpo/">
     
 
-    <meta property="og:url" content="http://localhost:1313/papers/my-first-paper-review/">
+    <meta property="og:url" content="http://localhost:1313/papers/bpo/">
   <meta property="og:site_name" content="D1N910-蛋糕">
   <meta property="og:title" content="Black-Box Prompt Optimization: Aligning Large Language Models without Model Training / 黑盒提示词优化：无需模型训练的对大语言模型的黑盒提示词优化">
   <meta property="og:description" content="论文阅读笔记 论文信息 标题: Black-Box Prompt Optimization: Aligning Large Language Models without Model Training 作者: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 , Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1† 发表时间: 2024年8月 期刊/会议: ACL 2024 长论文 摘要 Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned with human intents, which calls for additional treatments on them; that is, the alignment problem. To make LLMs better follow user instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually expensive in terms of GPU computing; even worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work, we take a different perspective—Black-Box Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to suit LLMs’ input understanding, so as to best realize users’ intents without updating LLMs’ parameters. BPO leverages human preferences to optimize prompts, thus making it superior to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the win rate against its original version and 10% for GPT-4. Notably, the BPO-aligned LLMs can outperform the same models aligned by PPO and DPO, and it also brings additional performance gains when combining BPO with PPO or DPO. Code and datasets are released at https://github.com/thu-coai/BPO.">
@@ -58,7 +58,7 @@ Large language models (LLMs) have shown impressive success in various applicatio
   <meta itemprop="description" content="论文阅读笔记 论文信息 标题: Black-Box Prompt Optimization: Aligning Large Language Models without Model Training 作者: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 , Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1† 发表时间: 2024年8月 期刊/会议: ACL 2024 长论文 摘要 Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned with human intents, which calls for additional treatments on them; that is, the alignment problem. To make LLMs better follow user instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually expensive in terms of GPU computing; even worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work, we take a different perspective—Black-Box Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to suit LLMs’ input understanding, so as to best realize users’ intents without updating LLMs’ parameters. BPO leverages human preferences to optimize prompts, thus making it superior to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the win rate against its original version and 10% for GPT-4. Notably, the BPO-aligned LLMs can outperform the same models aligned by PPO and DPO, and it also brings additional performance gains when combining BPO with PPO or DPO. Code and datasets are released at https://github.com/thu-coai/BPO.">
   <meta itemprop="datePublished" content="2025-12-25T17:18:37+08:00">
   <meta itemprop="dateModified" content="2025-12-25T17:18:37+08:00">
-  <meta itemprop="wordCount" content="284">
+  <meta itemprop="wordCount" content="321">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Black-Box Prompt Optimization: Aligning Large Language Models without Model Training / 黑盒提示词优化：无需模型训练的对大语言模型的黑盒提示词优化">
   <meta name="twitter:description" content="论文阅读笔记 论文信息 标题: Black-Box Prompt Optimization: Aligning Large Language Models without Model Training 作者: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 , Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1† 发表时间: 2024年8月 期刊/会议: ACL 2024 长论文 摘要 Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned with human intents, which calls for additional treatments on them; that is, the alignment problem. To make LLMs better follow user instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually expensive in terms of GPU computing; even worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work, we take a different perspective—Black-Box Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to suit LLMs’ input understanding, so as to best realize users’ intents without updating LLMs’ parameters. BPO leverages human preferences to optimize prompts, thus making it superior to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the win rate against its original version and 10% for GPT-4. Notably, the BPO-aligned LLMs can outperform the same models aligned by PPO and DPO, and it also brings additional performance gains when combining BPO with PPO or DPO. Code and datasets are released at https://github.com/thu-coai/BPO.">
@@ -135,14 +135,34 @@ Large language models (LLMs) have shown impressive success in various applicatio
 <p>Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned  with human intents, which calls for additional  treatments on them; that is, the alignment  problem. To make LLMs better follow user  instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually  expensive in terms of GPU computing; even  worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work,  we take a different perspective—Black-Box  Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to  suit LLMs’ input understanding, so as to best  realize users’ intents without updating LLMs’  parameters. BPO leverages human preferences  to optimize prompts, thus making it superior  to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and  the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the  win rate against its original version and 10%  for GPT-4. Notably, the BPO-aligned LLMs  can outperform the same models aligned by  PPO and DPO, and it also brings additional  performance gains when combining BPO with  PPO or DPO. Code and datasets are released at  <a href="https://github.com/thu-coai/BPO">https://github.com/thu-coai/BPO</a>.</p>
 <p>大语言模型（LLMs）在各种各样的应用中已经展现了令人瞩目的成功。然而，这些模型通常没有很好地对齐人类指示，这通常需要额外的处理手段；这就是对齐问题。为了使大模型更好地适合地遵循人类指令，现有的对齐方法主要关注如何进一步训练它们。然而，额外的 LLM 的训练通常需要大量的 GPU 计算资源，甚至更糟糕的是，某些 LLM 模型可能无法被用户需要的那样做训练 如 GPT。在此工作，我们采取一种不同的视角——黑盒提示词优化（BPO），来执行对齐。想法是，通过优化用户提示，来使 LLMs 的输入理解更适合，从而实现用户意图的最优化，而不需要更新 LLMs 的参数。BPO 利用人的偏好来优化提示，因此使其优于 LLM（如 ChatGPT），后者作为提示词工程师。此外，BPO 是模型无关的，经验结果表明BPO对齐后的ChatGPT可以对比原来的版本获得22%的提升，而对齐后的GPT-4可以获得10%的提升。令人瞩目的是，BPO对齐的 LLMs 可以与使用 PPO 和 DPO 对齐的相同模型相比获得额外的性能提升，并且当把BPO 和 PPO 或 DPO 结合时，BPO 还能获得额外的性能提升。代码和数据集可以在 <a href="https://github.com/thu-coai/BPO">https://github.com/thu-coai/BPO</a> 中找到。</p>
 <h2 id="主要内容">主要内容</h2>
+<p><img src="/images/papers/bpo/bpo_f1.png" alt="alt text"></p>
 <h3 id="1-研究背景">1. 研究背景</h3>
-<p><img src="image.png" alt="alt text"></p>
 <h3 id="2-核心方法">2. 核心方法</h3>
 <h3 id="3-主要贡献">3. 主要贡献</h3>
 <h3 id="4-实验结果">4. 实验结果</h3>
 <h3 id="5-个人思考">5. 个人思考</h3>
 <h2 id="总结">总结</h2>
 <p>对这篇论文的总结和评价&hellip;</p>
+<h2 id="全文翻译先做的全文翻译">全文翻译（先做的全文翻译）</h2>
+<h3 id="1-介绍-2025年12月27日-2120-2204">1. 介绍 （2025年12月27日 21:20-22:04）</h3>
+<p>最近，自然语言处理领域出现了令人瞩目的进步，这主要归功于大语言模型的的优势。在经过人工微调以后，这些模型展现了强大的指令执行和人类偏好理解能力，产生了向ChatGPT这些吸引众多关注的产品。</p>
+<p>然而，把LLMs和人类偏好对齐不是轻而易举。主要困难在于，将人类意图（通过提示）与LLMs的输入理解之间的差距缩小。已经有令人瞩目的努力关注在让LLMs靠近人类偏好上，包括来自人类反馈的强化学习（RLHF） (Ouyang et al., 2022),来自AI反馈的强化学习（RLAIF）(Bai et al., 2022b; Lee et al., 2023),或者直接偏好优化（DPO）(Rafailov et al., 2023)。尽管如此，这些方法存在各种不足：</p>
+<ul>
+<li>效率性：随着LLMs变得更大了，训练这些模型变得更加昂贵和困难，尤其是当使用臭名昭著的不那么稳定的RL算法来完成这个目的时。</li>
+<li>可及性：几乎所有表现最好的大模型，比如GPT（OpenAI, 2023）和Claude2（Anthropic, 2023a），都是b闭源的，只能通过API访问。因此，这些基于训练的方法不适用于这些不在组织的用户去提升模型对齐能力。</li>
+<li>可解释性：在使用这些方法的时候，这些人类偏好的建模和精确的结论都是不可解释的。</li>
+</ul>
+<p>与前面提到的对齐方法不同，我们提出引导人类提示以适应LLMs理解。虽然这个想法与“提示工程”密切相关，但它的自动化原型可以追溯到AutoPrompt(Shin等人，2020)和提示调优(即P-Tuning)(Liu等人，2021；Lester等人，2021)，其中优化提示词以提高任务表现同时不需要训练模型。我们的新对齐方法，黑盒提示优化(BPO)，提出了一种高效和可解释的范例，无需修改这些模型就可以对大模型进行对齐。BPO背后的中心思想是创建一个自动提示词优化器，它将人书写的提示词——这些提示通常组织得较少或不明确——改写为更好地传递人类意图的提示词。因此，这些提示词将会对LLM更加友好，并产生更好的人类便好的响应。</p>
+<p>在BPO中，提示词偏好优化器是从偏好比较中学习的。我们整理了一个公开可用的SFT数据集的子集，里面的样本中包含人类偏好或者是人工智能偏好。我们的训练数据的每个实例都包含一个提示以及一对喜欢和不喜欢的响应。我们随后利用大语言模型（LLMs）来界定并分析评价成对回复的差异，接着让大语言模型优化输入提示，以明确纳入那些能将回复从“不利”转向“有利”的特征。通过这种方式，我们构建了1.4万组“原始指令-优化后指令”配对数据，用以训练一个序列到序列（sequence-to-sequence）模型——该模型可对用户指令进行优化。</p>
+<p>我们的广泛实验表明：无需额外训练大语言模型（LLM），BPO即可显著提升基于API的LLM与开源LLM的对齐效果——在gpt-3.5-turbo、gpt-4、claude-2、llama-2-chat、vicuna等模型上，胜率提升幅度达8.8%至22.0%。</p>
+<p>此外，我们证明：BPO不仅性能优于基于PPO（Schulman等，2017）和DPO（Rafailov等，2023）的RLHF，还能在这些RLHF训练之后进一步提升LLM的对齐效果。我们还发现，在Alpaca数据集的监督微调实验中，BPO可通过优化回复质量来对齐LLM。另外，我们已证实：相较于直接将LLM用作提示工程师（prompt engineer），BPO更具优势——这凸显了融入人类反馈的重要性。</p>
+<p>我们的贡献可总结如下：</p>
+<ul>
+<li>我们提出了一种新颖的提示优化方法BPO，该方法<strong>无需训练大语言模型（LLM）即可增强其与人偏好的对齐效果</strong>，并在包括基于API的模型与开源模型在内的多种LLM上展现出性能提升。</li>
+<li>我们通过实验验证：除了现有的RLHF（基于人类反馈的强化学习）与偏好学习方法外，BPO是一种<strong>新颖且具有竞争力的对齐方法</strong>——在大量实验中，其性能优于PPO与DPO。此外，我们还证明：BPO与RLHF的对齐机制<strong>正交</strong>（即互不干扰、可独立叠加），能在传统对齐流程的基础上<strong>进一步带来额外增益</strong>。</li>
+<li>我们从<strong>提示词解释、澄清、丰富及安全性增强</strong>四个维度，系统分析了BPO如何优化原始提示；同时证明：在对齐大语言模型（LLM）时，BPO相较于现有偏好学习算法具有<strong>更好的可解释性</strong>。</li>
+</ul>
+<h3 id="2-相关工作">2. 相关工作</h3>
 
       </main>
       <aside class="flex-ns mt5">

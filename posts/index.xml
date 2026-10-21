@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on D1N910-蛋糕</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://www.d1n910.com/posts/</link>
     <description>Recent content in Posts on D1N910-蛋糕</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 08 May 2024 16:59:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.d1n910.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
-      <link>http://localhost:1313/posts/my-first-post/</link>
+      <link>https://www.d1n910.com/posts/my-first-post/</link>
       <pubDate>Wed, 08 May 2024 16:59:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/my-first-post/</guid>
-      <description>&lt;h2 id=&#34;jiangao-peng彭建高-cake&#34;&gt;Jiangao Peng(彭建高 Cake)&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/image.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Chinese🇨🇳、客家人&lt;/li&gt;&#xA;&lt;li&gt;Email📮: &lt;a href=&#34;mailto:wyd1n910@gmail.com&#34;&gt;wyd1n910@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;👨🏻📢:Call me Cake or Jiangao please&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;佛山大学，硕士（2023年9月-&amp;gt;在读)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;电子信息工程学院，专业: 软件工程&lt;/li&gt;&#xA;&lt;li&gt;主修课程: 机器学习、自然语言处理、模式识别、软件过程管理、软件体系结构、算法设计与分析、组合数学、工程伦理等。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;韶关学院，本科（2015年9月-2019年6月)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;数学与统计学院，专业: 信息与计算科学&lt;/li&gt;&#xA;&lt;li&gt;主修课程: 数据结构、计算机组成原理、计算机网络、操作系统、离散数学、数学分析、高等代数、动态网页设计等。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;focus&#34;&gt;Focus&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Jiangao Peng, Zhongyuan Han, Huan Zhang, Jingyan Ye, Chang Liu, Biao Liu, Mingcan Guo, Haoyang Chen, Zijie Lin, and Yujiao Tang. A Multilingual Text Detoxification Method Based on Few-shot Learning and CO-STAR Framework. In Guglielmo Faggioli, Nicola Ferro, Petra Galuščáková, and Alba García Seco Herrera, editors, Working Notes of CLEF 2024 - Conference and Labs of the Evaluation Forum, September 2024. CEUR-WS.org.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;skills--interests&#34;&gt;Skills &amp;amp; Interests&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Coding: Python, Javascript;&lt;/li&gt;&#xA;&lt;li&gt;Models: Bert，Baichuan，Moonshot，ChatGLM;&lt;/li&gt;&#xA;&lt;li&gt;Like：Dragon boat🐲、Body building💪🏻&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <guid>https://www.d1n910.com/posts/my-first-post/</guid>
+      <description>&lt;h2 id=&#34;jiangao-peng彭建高-cake&#34;&gt;Jiangao Peng(彭建高 Cake)&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.d1n910.com/images/image.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Chinese🇨🇳、客家人&lt;/li&gt;&#xA;&lt;li&gt;Email📮: &lt;a href=&#34;mailto:wyd1n910@gmail.com&#34;&gt;wyd1n910@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;👨🏻📢:Call me Cake or Jiangao please&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;佛山大学，硕士（2023年9月-&amp;gt;在读)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;电子信息工程学院，专业: 软件工程&lt;/li&gt;&#xA;&lt;li&gt;主修课程: 机器学习、自然语言处理、模式识别、软件过程管理、软件体系结构、算法设计与分析、组合数学、工程伦理等。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;韶关学院，本科（2015年9月-2019年6月)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;数学与统计学院，专业: 信息与计算科学&lt;/li&gt;&#xA;&lt;li&gt;主修课程: 数据结构、计算机组成原理、计算机网络、操作系统、离散数学、数学分析、高等代数、动态网页设计等。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;focus&#34;&gt;Focus&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Jiangao Peng, Zhongyuan Han, Huan Zhang, Jingyan Ye, Chang Liu, Biao Liu, Mingcan Guo, Haoyang Chen, Zijie Lin, and Yujiao Tang. A Multilingual Text Detoxification Method Based on Few-shot Learning and CO-STAR Framework. In Guglielmo Faggioli, Nicola Ferro, Petra Galuščáková, and Alba García Seco Herrera, editors, Working Notes of CLEF 2024 - Conference and Labs of the Evaluation Forum, September 2024. CEUR-WS.org.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;skills--interests&#34;&gt;Skills &amp;amp; Interests&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Coding: Python, Javascript;&lt;/li&gt;&#xA;&lt;li&gt;Models: Bert，Baichuan，Moonshot，ChatGLM;&lt;/li&gt;&#xA;&lt;li&gt;Like：Dragon boat🐲、Body building💪🏻&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>

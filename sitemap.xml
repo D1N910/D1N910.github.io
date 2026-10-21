@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://www.d1n910.com/</loc>
     <lastmod>2026-01-19T13:17:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/papers/</loc>
+    <loc>https://www.d1n910.com/papers/</loc>
     <lastmod>2026-01-19T13:17:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/papers/bpo/</loc>
+    <loc>https://www.d1n910.com/papers/bpo/</loc>
     <lastmod>2025-12-25T17:18:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://www.d1n910.com/posts/</loc>
     <lastmod>2024-05-08T16:59:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/my-first-post/</loc>
+    <loc>https://www.d1n910.com/posts/my-first-post/</loc>
     <lastmod>2024-05-08T16:59:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://www.d1n910.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://www.d1n910.com/tags/</loc>
   </url>
 </urlset>

@@ -6,75 +6,7 @@
     
     <title>MediaPipe &#43; 轻量时序模型：动作识别流水线笔记 | D1N910-蛋糕</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="
-这是一篇额外笔记，记录 TFLite、MediaPipe 和轻量时序模型的概念，以及一种可落地的动作识别流水线。与 YOLO26 论文笔记分开，方便以后做健身动作识别项目时直接查。
-1. TFLite 推理图、CNN、MediaPipe 图的关系
-三者不是同一层概念，不能直接二选一。
-
-  
-      
-          概念
-          是什么
-          关注点
-      
-  
-  
-      
-          CNN
-          模型架构：卷积层、池化、激活、残差怎么连
-          表达能力、精度
-      
-      
-          TFLite 推理图
-          部署产物：转成 .tflite 后的可执行计算图
-          延迟、内存、算子兼容、量化、GPU/NPU 委托
-      
-      
-          MediaPipe 图
-          流水线编排：预处理 → TFLite 推理 → 后处理
-          整条链路的连接、同步、输入输出
-      
-  
-
-层次关系：
-CNN（模型架构）
-  → TFLite 图（单个模型的可执行图）
-  → MediaPipe 图（整条推理流水线，可能包含多个 TFLite 模型）
-
-CNN 是菜谱：描述用什么层、怎么算。
-TFLite 图是打包好的料理包 &#43; 厨房适配说明：描述在手机上按什么顺序执行哪些算子、张量多大、权重在哪、是否量化。
-MediaPipe 图是整条厨房流水线：备菜、加热、装盘怎么衔接。
-
-TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出成 TFLite 图。所以“TFLite 推理图 vs CNN”不是对立关系，而是部署形态与模型架构的关系。
-2. 两段式动作识别流水线
-视频帧
-→ MediaPipe Pose（每帧检测 33 个关键点）
-→ 关键点序列（T×33×4：x, y, z, visibility）
-→ 下游时序模型（LSTM / GRU / 1D-CNN / TCN / Transformer）
-→ 动作、相位、错误标签
-→ 规则映射成指导文案
-
-保留 MediaPipe 做推理：不自己训练姿态模型，继续用 MediaPipe 的预训练姿态模型提取每帧关键点。它内部也是 CNN &#43; TFLite，可以当黑盒用。
-下游时序模型：在关键点序列上单独训练一个模型，学习动作随时间的变化。MediaPipe 负责“关节在哪”，时序模型负责“你在做什么动作”。
-“下游”：MediaPipe 是上游特征提取器，时序模型是下游任务模型。
-
-为什么这么设计
-
-复用成熟的姿态模型，省数据、省训练成本；
-关键点维度低，时序模型可以很小，端侧跑得动；
-模块化：姿态模型和动作模型可以分别替换、分别调试；
-隐私友好：关键点可以在本地处理，不必上传视频。
-
-代价
-
-误差传播：MediaPipe 关键点错了，下游模型跟着错；
-丢失外观信息：只看骨架，器械、物体交互看不到；
-两段式延迟和集成复杂度；
-需要标注动作片段，窗口大小、步长、平滑策略都要调；
-遮挡、健身房器械、特殊机位可能让 MediaPipe 失效。
-
-3. 轻量时序模型是什么
-它不是只看单帧，而是输入一段时间的特征序列，基于整段序列做判断。">
+    <meta name="description" content="记录 TFLite、MediaPipe 与轻量时序模型的关系，以及一套可落地的动作识别流水线。">
     <meta name="generator" content="Hugo 0.147.2">
     
     
@@ -84,9 +16,11 @@ TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出�
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.cfefe32381f886c53d70922d65cc32089db2b282b4f01bddff1e1ee5595df502.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.7ff9431cb2367d70f9d70f2e599df2263380329516d2f0b40236e19dcd542632.css" >
 
 
+
+  
 
   
 
@@ -112,11 +46,7 @@ TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出�
     <meta property="og:url" content="https://www.d1n910.com/posts/mediapipe-temporal-model/">
   <meta property="og:site_name" content="D1N910-蛋糕">
   <meta property="og:title" content="MediaPipe &#43; 轻量时序模型：动作识别流水线笔记">
-  <meta property="og:description" content="这是一篇额外笔记，记录 TFLite、MediaPipe 和轻量时序模型的概念，以及一种可落地的动作识别流水线。与 YOLO26 论文笔记分开，方便以后做健身动作识别项目时直接查。
-1. TFLite 推理图、CNN、MediaPipe 图的关系 三者不是同一层概念，不能直接二选一。
-概念 是什么 关注点 CNN 模型架构：卷积层、池化、激活、残差怎么连 表达能力、精度 TFLite 推理图 部署产物：转成 .tflite 后的可执行计算图 延迟、内存、算子兼容、量化、GPU/NPU 委托 MediaPipe 图 流水线编排：预处理 → TFLite 推理 → 后处理 整条链路的连接、同步、输入输出 层次关系：
-CNN（模型架构） → TFLite 图（单个模型的可执行图） → MediaPipe 图（整条推理流水线，可能包含多个 TFLite 模型） CNN 是菜谱：描述用什么层、怎么算。 TFLite 图是打包好的料理包 &#43; 厨房适配说明：描述在手机上按什么顺序执行哪些算子、张量多大、权重在哪、是否量化。 MediaPipe 图是整条厨房流水线：备菜、加热、装盘怎么衔接。 TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出成 TFLite 图。所以“TFLite 推理图 vs CNN”不是对立关系，而是部署形态与模型架构的关系。
-2. 两段式动作识别流水线 视频帧 → MediaPipe Pose（每帧检测 33 个关键点） → 关键点序列（T×33×4：x, y, z, visibility） → 下游时序模型（LSTM / GRU / 1D-CNN / TCN / Transformer） → 动作、相位、错误标签 → 规则映射成指导文案 保留 MediaPipe 做推理：不自己训练姿态模型，继续用 MediaPipe 的预训练姿态模型提取每帧关键点。它内部也是 CNN &#43; TFLite，可以当黑盒用。 下游时序模型：在关键点序列上单独训练一个模型，学习动作随时间的变化。MediaPipe 负责“关节在哪”，时序模型负责“你在做什么动作”。 “下游”：MediaPipe 是上游特征提取器，时序模型是下游任务模型。 为什么这么设计 复用成熟的姿态模型，省数据、省训练成本； 关键点维度低，时序模型可以很小，端侧跑得动； 模块化：姿态模型和动作模型可以分别替换、分别调试； 隐私友好：关键点可以在本地处理，不必上传视频。 代价 误差传播：MediaPipe 关键点错了，下游模型跟着错； 丢失外观信息：只看骨架，器械、物体交互看不到； 两段式延迟和集成复杂度； 需要标注动作片段，窗口大小、步长、平滑策略都要调； 遮挡、健身房器械、特殊机位可能让 MediaPipe 失效。 3. 轻量时序模型是什么 它不是只看单帧，而是输入一段时间的特征序列，基于整段序列做判断。">
+  <meta property="og:description" content="记录 TFLite、MediaPipe 与轻量时序模型的关系，以及一套可落地的动作识别流水线。">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -124,21 +54,13 @@ CNN（模型架构） → TFLite 图（单个模型的可执行图） → MediaP
     <meta property="article:modified_time" content="2026-10-29T00:00:00+00:00">
 
   <meta itemprop="name" content="MediaPipe &#43; 轻量时序模型：动作识别流水线笔记">
-  <meta itemprop="description" content="这是一篇额外笔记，记录 TFLite、MediaPipe 和轻量时序模型的概念，以及一种可落地的动作识别流水线。与 YOLO26 论文笔记分开，方便以后做健身动作识别项目时直接查。
-1. TFLite 推理图、CNN、MediaPipe 图的关系 三者不是同一层概念，不能直接二选一。
-概念 是什么 关注点 CNN 模型架构：卷积层、池化、激活、残差怎么连 表达能力、精度 TFLite 推理图 部署产物：转成 .tflite 后的可执行计算图 延迟、内存、算子兼容、量化、GPU/NPU 委托 MediaPipe 图 流水线编排：预处理 → TFLite 推理 → 后处理 整条链路的连接、同步、输入输出 层次关系：
-CNN（模型架构） → TFLite 图（单个模型的可执行图） → MediaPipe 图（整条推理流水线，可能包含多个 TFLite 模型） CNN 是菜谱：描述用什么层、怎么算。 TFLite 图是打包好的料理包 &#43; 厨房适配说明：描述在手机上按什么顺序执行哪些算子、张量多大、权重在哪、是否量化。 MediaPipe 图是整条厨房流水线：备菜、加热、装盘怎么衔接。 TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出成 TFLite 图。所以“TFLite 推理图 vs CNN”不是对立关系，而是部署形态与模型架构的关系。
-2. 两段式动作识别流水线 视频帧 → MediaPipe Pose（每帧检测 33 个关键点） → 关键点序列（T×33×4：x, y, z, visibility） → 下游时序模型（LSTM / GRU / 1D-CNN / TCN / Transformer） → 动作、相位、错误标签 → 规则映射成指导文案 保留 MediaPipe 做推理：不自己训练姿态模型，继续用 MediaPipe 的预训练姿态模型提取每帧关键点。它内部也是 CNN &#43; TFLite，可以当黑盒用。 下游时序模型：在关键点序列上单独训练一个模型，学习动作随时间的变化。MediaPipe 负责“关节在哪”，时序模型负责“你在做什么动作”。 “下游”：MediaPipe 是上游特征提取器，时序模型是下游任务模型。 为什么这么设计 复用成熟的姿态模型，省数据、省训练成本； 关键点维度低，时序模型可以很小，端侧跑得动； 模块化：姿态模型和动作模型可以分别替换、分别调试； 隐私友好：关键点可以在本地处理，不必上传视频。 代价 误差传播：MediaPipe 关键点错了，下游模型跟着错； 丢失外观信息：只看骨架，器械、物体交互看不到； 两段式延迟和集成复杂度； 需要标注动作片段，窗口大小、步长、平滑策略都要调； 遮挡、健身房器械、特殊机位可能让 MediaPipe 失效。 3. 轻量时序模型是什么 它不是只看单帧，而是输入一段时间的特征序列，基于整段序列做判断。">
+  <meta itemprop="description" content="记录 TFLite、MediaPipe 与轻量时序模型的关系，以及一套可落地的动作识别流水线。">
   <meta itemprop="datePublished" content="2026-10-29T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-10-29T00:00:00+00:00">
   <meta itemprop="wordCount" content="344">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="MediaPipe &#43; 轻量时序模型：动作识别流水线笔记">
-  <meta name="twitter:description" content="这是一篇额外笔记，记录 TFLite、MediaPipe 和轻量时序模型的概念，以及一种可落地的动作识别流水线。与 YOLO26 论文笔记分开，方便以后做健身动作识别项目时直接查。
-1. TFLite 推理图、CNN、MediaPipe 图的关系 三者不是同一层概念，不能直接二选一。
-概念 是什么 关注点 CNN 模型架构：卷积层、池化、激活、残差怎么连 表达能力、精度 TFLite 推理图 部署产物：转成 .tflite 后的可执行计算图 延迟、内存、算子兼容、量化、GPU/NPU 委托 MediaPipe 图 流水线编排：预处理 → TFLite 推理 → 后处理 整条链路的连接、同步、输入输出 层次关系：
-CNN（模型架构） → TFLite 图（单个模型的可执行图） → MediaPipe 图（整条推理流水线，可能包含多个 TFLite 模型） CNN 是菜谱：描述用什么层、怎么算。 TFLite 图是打包好的料理包 &#43; 厨房适配说明：描述在手机上按什么顺序执行哪些算子、张量多大、权重在哪、是否量化。 MediaPipe 图是整条厨房流水线：备菜、加热、装盘怎么衔接。 TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出成 TFLite 图。所以“TFLite 推理图 vs CNN”不是对立关系，而是部署形态与模型架构的关系。
-2. 两段式动作识别流水线 视频帧 → MediaPipe Pose（每帧检测 33 个关键点） → 关键点序列（T×33×4：x, y, z, visibility） → 下游时序模型（LSTM / GRU / 1D-CNN / TCN / Transformer） → 动作、相位、错误标签 → 规则映射成指导文案 保留 MediaPipe 做推理：不自己训练姿态模型，继续用 MediaPipe 的预训练姿态模型提取每帧关键点。它内部也是 CNN &#43; TFLite，可以当黑盒用。 下游时序模型：在关键点序列上单独训练一个模型，学习动作随时间的变化。MediaPipe 负责“关节在哪”，时序模型负责“你在做什么动作”。 “下游”：MediaPipe 是上游特征提取器，时序模型是下游任务模型。 为什么这么设计 复用成熟的姿态模型，省数据、省训练成本； 关键点维度低，时序模型可以很小，端侧跑得动； 模块化：姿态模型和动作模型可以分别替换、分别调试； 隐私友好：关键点可以在本地处理，不必上传视频。 代价 误差传播：MediaPipe 关键点错了，下游模型跟着错； 丢失外观信息：只看骨架，器械、物体交互看不到； 两段式延迟和集成复杂度； 需要标注动作片段，窗口大小、步长、平滑策略都要调； 遮挡、健身房器械、特殊机位可能让 MediaPipe 失效。 3. 轻量时序模型是什么 它不是只看单帧，而是输入一段时间的特征序列，基于整段序列做判断。">
+  <meta name="twitter:description" content="记录 TFLite、MediaPipe 与轻量时序模型的关系，以及一套可落地的动作识别流水线。">
 
       
     
@@ -420,7 +342,7 @@ if back_angle &gt; 30:   &#34;保持背部中立，避免弯腰&#34;
   
   
   <div class="links-section mt4">
-    <h4 class="white-70 f5">友情链接 (可以发邮件到 wyd1n910艾特gmail.com 申请交换友链，我是社牛)</h4>
+    <h4 class="white-70 f5">友情链接</h4>
     <ul class="list flex flex-wrap pl0 mv0">
       <li class="mh2">
         <a class="f6 white-70 hover-white no-underline" href="https://blog.gofixpro.fun/" target="_blank" rel="noopener">楼主</a>

@@ -99,6 +99,12 @@
             </a>
           </li>
           
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/404/" title="这不是页面 page">
+              这不是页面
+            </a>
+          </li>
+          
         </ul>
       
       <div class="ananke-socials"></div>
@@ -113,11 +119,173 @@
 
     <main class="pb7" role="main">
       
-    <article class="center cf pv5 measure-wide-l">
-      <h1>
-        This is not the page you were looking for
-      </h1>
-    </article>
+<style>
+  .dino404 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.6rem 1rem 0;
+  }
+  .dino404-head {
+    margin: 0 0 1.15rem;
+    text-align: center;
+  }
+  .dino404-code {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.36em;
+    text-indent: 0.36em;
+    text-transform: uppercase;
+    color: #6547d7;
+  }
+  .dino404-head h1 {
+    margin: 0.45rem 0 0.3rem;
+    font-size: clamp(1.35rem, 4.2vw, 1.9rem);
+    line-height: 1.25;
+    color: #20243d;
+  }
+  .dino404-head p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #536078;
+  }
+  .dino404-stage {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border: 1px solid #e2e6f3;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6ff 100%);
+    box-shadow: 0 22px 46px -30px rgba(32, 36, 61, 0.5);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .dino404-stage:focus-visible {
+    outline: 3px solid rgba(101, 71, 215, 0.45);
+    outline-offset: 3px;
+  }
+  @media (min-width: 40em) {
+    .dino404-stage {
+      height: 300px;
+    }
+  }
+  .dino404-stage canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .dino404-hud {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    display: flex;
+    gap: 0.9rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: #9aa3bd;
+    pointer-events: none;
+  }
+  .dino404-hud #dino-score {
+    color: #20243d;
+  }
+  .dino404-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem;
+    text-align: center;
+    background: rgba(248, 249, 255, 0.76);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+  .dino404-overlay[hidden] {
+    display: none;
+  }
+  .dino404-overlay-title {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #20243d;
+  }
+  .dino404-overlay-sub {
+    margin: 0;
+    font-size: 0.84rem;
+    color: #6b7691;
+  }
+  .dino404-btn {
+    margin-top: 0.35rem;
+    padding: 0.62rem 1.5rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(120deg, #7a5cf0, #b969d8);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 22px -12px rgba(101, 71, 215, 0.9);
+  }
+  .dino404-btn:focus-visible {
+    outline: 3px solid rgba(101, 71, 215, 0.4);
+    outline-offset: 3px;
+  }
+  .dino404-help,
+  .dino404-back {
+    margin: 0.9rem 0 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #7b86a3;
+  }
+  .dino404-back {
+    margin-top: 1.1rem;
+    font-size: 0.9rem;
+  }
+  .dino404-back a {
+    color: #6547d7;
+    font-weight: 600;
+  }
+</style>
+
+<section class="dino404">
+  <header class="dino404-head">
+    <p class="dino404-code">404 not found</p>
+    <h1>这不是你要找的页面</h1>
+    <p>页面可能搬家了，或者从来就没存在过。先跑两局热热身。</p>
+  </header>
+
+  <div class="dino404-stage" id="dino-stage" tabindex="0">
+    <canvas
+      id="dino-canvas"
+      data-logo="/images/logo.jpg"
+      role="img"
+      aria-label="像素小恐龙跑酷：按空格或点击跳跃，躲开仙人掌和飞鸟"
+    ></canvas>
+    <div class="dino404-hud" aria-hidden="true">
+      <span id="dino-score">00000</span>
+      <span>HI <span id="dino-hi">00000</span></span>
+    </div>
+    <div class="dino404-overlay" id="dino-overlay">
+      <p class="dino404-overlay-title" id="dino-overlay-title">准备好了吗</p>
+      <p class="dino404-overlay-sub" id="dino-overlay-sub">空格 / 点一下，蛋糕就开始跑</p>
+      <button type="button" class="dino404-btn" id="dino-start">开始跑</button>
+    </div>
+  </div>
+
+  <p class="dino404-help">空格 / ↑ 跳跃（长按跳更高）· ↓ 蹲下躲鸟 · 手机点屏幕跳跃</p>
+  <p class="dino404-back"><a href="/">回首页看看</a></p>
+</section>
+
+<script src="/js/dino404.js" defer></script>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

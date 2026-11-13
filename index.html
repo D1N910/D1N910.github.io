@@ -157,6 +157,41 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/papers/yolo26/" class="color-inherit dim link">
+            Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <h1 id="论文阅读笔记">论文阅读笔记</h1>
+<h2 id="论文信息">论文信息</h2>
+<ul>
+<li><strong>标题</strong>：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models</li>
+<li><strong>作者</strong>：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics）</li>
+<li><strong>发表时间</strong>：2026 年 6 月（arXiv:2606.03748v1，2026-06-02）</li>
+<li><strong>领域</strong>：cs.CV，实时目标检测与统一视觉模型</li>
+<li><strong>代码</strong>：<a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>（AGPL-3.0）</li>
+<li><strong>DOI</strong>：10.48550/arXiv.2606.03748</li>
+</ul>
+<p>一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。</p>
+<h2 id="摘要">摘要</h2>
+<p>Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at <a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>.</p>
+        </div>
+        <a href="/papers/yolo26/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/papers/bpo/" class="color-inherit dim link">
             Black-Box Prompt Optimization: Aligning Large Language Models without Model Training / 黑盒提示词优化：无需模型训练的对大语言模型的黑盒提示词优化
             </a>

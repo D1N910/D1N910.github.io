@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型 | D1N910-蛋糕</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="论文阅读笔记
+论文信息
+
+标题：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models
+作者：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics）
+发表时间：2026 年 6 月（arXiv:2606.03748v1，2026-06-02）
+领域：cs.CV，实时目标检测与统一视觉模型
+代码：https://github.com/ultralytics/ultralytics（AGPL-3.0）
+DOI：10.48550/arXiv.2606.03748
+
+一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。
+摘要
+Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at https://github.com/ultralytics/ultralytics.">
+    <meta name="generator" content="Hugo 0.147.2">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.7ff9431cb2367d70f9d70f2e599df2263380329516d2f0b40236e19dcd542632.css" >
+
+
+
+  
+
+  
+
+  
+
+
+    
+
+
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.d1n910.com/papers/yolo26/">
+    
+
+    <meta property="og:url" content="https://www.d1n910.com/papers/yolo26/">
+  <meta property="og:site_name" content="D1N910-蛋糕">
+  <meta property="og:title" content="Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型">
+  <meta property="og:description" content="论文阅读笔记 论文信息 标题：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models 作者：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics） 发表时间：2026 年 6 月（arXiv:2606.03748v1，2026-06-02） 领域：cs.CV，实时目标检测与统一视觉模型 代码：https://github.com/ultralytics/ultralytics（AGPL-3.0） DOI：10.48550/arXiv.2606.03748 一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。
+摘要 Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at https://github.com/ultralytics/ultralytics.">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="papers">
+    <meta property="article:published_time" content="2026-10-22T19:30:00+08:00">
+    <meta property="article:modified_time" content="2026-10-22T19:30:00+08:00">
+
+  <meta itemprop="name" content="Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型">
+  <meta itemprop="description" content="论文阅读笔记 论文信息 标题：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models 作者：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics） 发表时间：2026 年 6 月（arXiv:2606.03748v1，2026-06-02） 领域：cs.CV，实时目标检测与统一视觉模型 代码：https://github.com/ultralytics/ultralytics（AGPL-3.0） DOI：10.48550/arXiv.2606.03748 一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。
+摘要 Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at https://github.com/ultralytics/ultralytics.">
+  <meta itemprop="datePublished" content="2026-10-22T19:30:00+08:00">
+  <meta itemprop="dateModified" content="2026-10-22T19:30:00+08:00">
+  <meta itemprop="wordCount" content="1260">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型">
+  <meta name="twitter:description" content="论文阅读笔记 论文信息 标题：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models 作者：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics） 发表时间：2026 年 6 月（arXiv:2606.03748v1，2026-06-02） 领域：cs.CV，实时目标检测与统一视觉模型 代码：https://github.com/ultralytics/ultralytics（AGPL-3.0） DOI：10.48550/arXiv.2606.03748 一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。
+摘要 Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at https://github.com/ultralytics/ultralytics.">
+
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        <img src="/images/logo.jpg" class="w100 mw5-ns" alt="D1N910-蛋糕" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/" title="首页 page">
+              首页
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/posts/" title="文章 page">
+              文章
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/papers/" title="论文阅读 page">
+              论文阅读
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/games/xiaoshufajia/" title="游戏 page">
+              游戏
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/404/" title="这不是页面 page">
+              这不是页面
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+    <article class="pa3 pa4-ns nested-copy-line-height">
+      <main class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
+        <h1 id="论文阅读笔记">论文阅读笔记</h1>
+<h2 id="论文信息">论文信息</h2>
+<ul>
+<li><strong>标题</strong>：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models</li>
+<li><strong>作者</strong>：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics）</li>
+<li><strong>发表时间</strong>：2026 年 6 月（arXiv:2606.03748v1，2026-06-02）</li>
+<li><strong>领域</strong>：cs.CV，实时目标检测与统一视觉模型</li>
+<li><strong>代码</strong>：<a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>（AGPL-3.0）</li>
+<li><strong>DOI</strong>：10.48550/arXiv.2606.03748</li>
+</ul>
+<p>一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。</p>
+<h2 id="摘要">摘要</h2>
+<p>Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at <a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>.</p>
+<p>实时视觉要求模型在多种硬件上都准确、高效且易于部署。YOLO 家族因此被广泛采用，但大多数 YOLO 检测器在推理时仍依赖非极大值抑制（NMS），因分布焦点损失（DFL）而携带沉重的检测头，需要很长的训练 schedule，并且可能让最小的目标得不到正标签分配。我们提出 Ultralytics YOLO26，一个统一的实时视觉模型家族，通过协同的架构与训练改进来解决这些限制。</p>
+<p>架构上，YOLO26 采用双头设计实现原生无 NMS 的端到端推理，并彻底移除 DFL，得到更轻、回归范围不受约束的检测头。训练上，三项技术共同提升精度并降低成本：MuSGD，一种借鉴大语言模型训练的 Muon–SGD 混合优化器；Progressive Loss，把监督逐步移向推理时使用的头；STAL，一种保证小目标正样本覆盖的标签分配策略。</p>
+<p>除检测外，YOLO26 还为实例分割、姿态估计和有向检测引入任务专用头与损失设计，在各任务和尺度上带来一致增益。该家族覆盖 n/s/m/l/x 五个尺度，在单一流水线中支持检测、实例分割、姿态估计、分类和有向检测，并提供开放词汇扩展 YOLOE-26，支持文本、视觉和无提示推理。在所有尺度上，YOLO26 在 COCO 上达到 40.9–57.5 mAP，T4 TensorRT 延迟为 1.7–11.8 ms，推进了实时检测器的精度-延迟 Pareto 前沿；YOLOE-26x 在 LVIS minival 文本提示下达到 40.6 AP。代码与模型开源于 <a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>。</p>
+<h2 id="主要内容">主要内容</h2>
+<h3 id="1-研究背景">1. 研究背景</h3>
+<p>实时目标检测的长期矛盾是：精度、延迟和部署复杂度很难同时优化。论文把现役 YOLO 检测器的问题归纳为五条：</p>
+<ol>
+<li><strong>推理依赖 NMS</strong>。一对多标签分配会让同一个 GT 周围多个 anchor 都成为正样本，推理时产生重复框，必须靠 NMS 去重；NMS 让延迟不确定，也增加部署链路。</li>
+<li><strong>YOLOv10 式双头的监督不对称</strong>。YOLOv10 已经用双分支实现 NMS-free，但训练时给一对一头和一对多头相同损失权重，导致真正用于推理的一对一头训练不足。</li>
+<li><strong>DFL 让检测头变重、回归范围受限</strong>。DFL 把每条边的 4 个标量变成 \(4K\) 个 logits（通常 \(K=16\)），并带来有限回归范围。</li>
+<li><strong>训练 schedule 太长</strong>。标准 SGD 配方通常需要约 600 个 epoch 才能在 COCO 上达到有竞争力的精度。</li>
+<li><strong>TAL 对极小目标零分配</strong>。TAL 要求 anchor 中心落在 GT 框内；下采样后，极小目标可能框内一个 anchor 中心都没有，拿到零正样本、零梯度。</li>
+</ol>
+<p>YOLO26 的思路不是单点替换，而是同时动架构和训练：双头 + 去 DFL 负责推理路径，MuSGD、Progressive Loss、STAL 负责训练质量。</p>
+<h3 id="2-核心方法">2. 核心方法</h3>
+<h4 id="21-双头与原生-nms-free-推理">2.1 双头与原生 NMS-free 推理</h4>
+<p>YOLO26 检测模型有两个头，但训练和推理走不同路径：</p>
+<ul>
+<li><strong>一对一头（默认推理）</strong>：最多输出 300 个检测，形状为 <code>(N, 300, 6)</code>，即 <code>x1, y1, x2, y2, score, class</code>。它使用 TAL 先取 <code>topk=7</code> 的候选，再用 <code>topk2=1</code> 得到每个 GT 的唯一分配，因此可以直接解码，不需要 NMS。</li>
+<li><strong>一对多头（训练辅助 / 可选高精度路径）</strong>：保留传统密集输出，形状为 <code>(N, nc+4, 8400)</code>，使用 <code>topk=10</code> 的 TAL 和 NMS。推理时可用 <code>end2end=False</code> 切回这条路径。</li>
+</ul>
+<p>训练时两个头都参与，一对多头提供更密集的监督；推理默认只走一对一头。论文把它称为 accuracy–latency knob：要简单、延迟确定，就用一对一头；要极限精度、且平台能高效跑 NMS，就用一对多头。</p>
+<p><img src="/images/papers/yolo26/yolo26_f2.svg" alt="图 2：YOLO26 训练流水线"></p>
+<p>图 2：共享 backbone 和 neck 同时喂给一对多/一对一头，STAL 改善小目标分配，Progressive Loss 调整两个分支的损失权重，MuSGD 更新参数。来源：arXiv:2606.03748。</p>
+<h4 id="22-移除-dfl">2.2 移除 DFL</h4>
+<p>DFL 把每条边的距离建模成 \(K\) 个 bin 的离散分布：</p>
+$$
+d=\sum_{i=0}^{K-1} i\cdot \mathrm{softmax}(z)_i,\quad z\in\mathbb{R}^K
+$$<p>它有两个代价：</p>
+<ul>
+<li><strong>参数/计算膨胀</strong>：每条边 1 个标量变成 \(K\) 个 logits，4 条边就是 \(4K\)。YOLO11n 上去掉 DFL 后，参数从 2.6M 降到 2.3M（-12%），GFLOPs 从 6.5 降到 5.2（-20%）；论文还报告头更轻：-0.3M 参数、-1.4 GFLOPs、-0.2 ms。</li>
+<li><strong>回归范围有限</strong>：每条边的最大可表示距离是 \((K-1)s\)。\(K=16\)、stride 32 时单边约 480 px，宽/高上界约 960 px；1280 分辨率下大目标很容易超过这个范围。</li>
+</ul>
+<p>YOLO26 直接去掉 DFL，改成直接框回归 + L1 损失。Table 3 的受控对照显示，去 DFL 在 640 下 +0.3 AP / +1.0 AP_L，在 1280 下 +1.3 AP / +2.2 AP_L；分辨率越高，大目标越容易触到原来的有限范围，收益越明显。</p>
+<p>注意 Table 2 和 Table 3 不是同一个实验：Table 2 的“−DFL”是逐步消融中的一步，单步会掉 0.6 AP；Table 3 是在 YOLO26s 配置下控制 DFL 开关的对照。前者说明“先跌”，后者说明“在完整配方下，去 DFL 本身可以是正收益”。</p>
+<h4 id="23-musgd-优化器">2.3 MuSGD 优化器</h4>
+<p>MuSGD 是 Muon 与 SGD 的混合优化器：</p>
+<ul>
+<li><strong>多维参数</strong>（卷积核、线性权重）：使用 Muon 与 SGD 的加权混合。Muon 对动量更新做轻量正交化（几次 Newton–Schulz 迭代），改善更新条件数。</li>
+<li><strong>一维参数</strong>（bias、归一化层的 scale）：使用纯 SGD，保持 scale/shift 参数稳定。</li>
+</ul>
+<p>Table 4 显示，MuSGD 用 500 个 epoch 达到 47.4 mAP，而 SGD 用 600 个 epoch 达到 47.0 mAP，即 +0.4 mAP、少 16.7% 的 epoch。注意这里报的是 epoch，不是 wall-clock；论文没有报告总训练时间或 GPU-hours。</p>
+<h4 id="24-progressive-loss">2.4 Progressive Loss</h4>
+<p>双头训练存在天然的不对称：一对多头监督更密、早期更容易优化；一对一头约束更强，却决定最终推理行为。如果两个头始终等权，推理头会训练不足。</p>
+<p>Progressive Loss 用一个随 epoch 线性变化的权重把监督从一对多移向一对一：</p>
+$$
+\mathcal{L}_{total}=\alpha(t)\mathcal{L}_{one2many}+(1-\alpha(t))\mathcal{L}_{one2one}
+$$<p>默认 schedule 是 \((0.8,0.2)\rightarrow(0.1,0.9)\)：一对多权重从 0.8 降到 0.1，一对一头从 0.2 升到 0.9。Table 5 中，等权 baseline 的 E2E AP 是 46.4，最佳 schedule 是 46.7；一开始就用 <code>(1.0, 0.0)</code> 完全压掉一对一头，只有 46.4，说明推理头从训练初期就需要非零监督。</p>
+<h4 id="25-stal小目标感知标签分配">2.5 STAL：小目标感知标签分配</h4>
+<p>TAL 的候选筛选要求 anchor 中心落在 GT 框内。对极小目标来说，下采样后框内可能没有任何 anchor 中心，于是零正样本、零梯度。</p>
+<p>STAL 只改“候选筛选”的几何：对每个 GT，如果某条边 \(d_i\) 小于最小 stride \(s_{min}\)，就在候选筛选时把这条边替换成参考尺寸 \(s_{ref}\)：</p>
+$$
+\tilde d_i=
+\begin{cases}
+s_{ref}, & d_i < s_{min}\\
+d_i, & \text{otherwise}
+\end{cases}
+$$<p>当前实现中 \(s_{min}=8\)、\(s_{ref}=16\)（第二层 stride），宽高分别判断。得到的 surrogate box 只用于候选 mask；<strong>原始 GT 框仍用于 task-aligned 打分、最终匹配和框回归</strong>。这样极小目标至少有一个候选，但不会改变类别，也不会改变回归目标。</p>
+<p>Table 6：TAL 46.6 AP / AP_S 29.0；STAL \(s_{ref}=16\) 46.8 AP / AP_S 29.6；\(s_{ref}=8\) 的 AP_S 只有 27.7，\(s_{ref}=32\) 又会扭曲尺度先验，降到 46.5 / 28.3。</p>
+<h4 id="26-任务头与-yoloe-26">2.6 任务头与 YOLOE-26</h4>
+<p>YOLO26 不是只做检测，它在同一套 backbone/neck 上挂了任务专用头：</p>
+<ul>
+<li><strong>实例分割</strong>：多尺度 Proto 模块 + 辅助语义分割损失。Table 8 中，YOLO11s 分割 baseline 为 32.0 mAP，多尺度 Proto 升到 32.4，再加辅助损失升到 32.7；相对 YOLO11，box AP 提升 +1.6 到 +2.5，mask AP 提升 +2.4 到 +3.7。</li>
+<li><strong>姿态估计</strong>：OKS 损失 + RLE（Residual Log-Likelihood Estimation）损失 + 解码优化。Table 9 中 <code>wOKS=24, wRLE=1</code> 最好，63.0 mAP；相对 YOLO11，pose AP 提升 +2.1 到 +7.2。</li>
+<li><strong>有向检测（OBB）</strong>：改用 \([-45^\circ,135^\circ)\) 的角度定义，并加角度损失处理方形目标的角度不连续。Table 10 中 mAP 从 47.7 升到 49.0；Table 11 中 \(\lambda=3\) 最好，50.2 mAP；相对 YOLO11，OBB mAP 提升 +2.5 到 +3.4，AP75 提升 +4.6 到 +6.0。</li>
+<li><strong>YOLOE-26</strong>：开放词汇扩展，支持文本提示、视觉提示和无提示推理；升级了 YOLO26 检测栈、MobileCLIP2 文本编码器、数据引擎和解耦分割训练。YOLOE-26x 在 LVIS minival 文本提示下达到 40.6 AP。</li>
+</ul>
+<h3 id="3-主要贡献">3. 主要贡献</h3>
+<ol>
+<li><strong>DFL-free 双头架构</strong>：一对一头原生 NMS-free 端到端推理，一对多头保留为可选的高精度密集分支。</li>
+<li><strong>协同训练配方</strong>：MuSGD + Progressive Loss + STAL，分别解决长 schedule、训练-推理头不一致、小目标零正样本。</li>
+<li><strong>任务专用头</strong>：实例分割、姿态估计、OBB 各有专用头和损失设计，在统一家族内取得一致增益。</li>
+<li><strong>YOLOE-26 开放词汇扩展</strong>：把文本/视觉/无提示检测接进同一套 YOLO26 检测栈。</li>
+<li><strong>统一家族</strong>：n/s/m/l/x 五档，在 COCO 上推进精度-延迟 Pareto 前沿，相对 YOLO11 同尺度提升 1.6–2.8 AP。</li>
+</ol>
+<h3 id="4-实验结果">4. 实验结果</h3>
+<h4 id="41-实验设置">4.1 实验设置</h4>
+<ul>
+<li>两阶段训练：Objects365-v1 预训练 150 epoch，再在 COCO 上微调。</li>
+<li>COCO 微调 epoch：n/s/m/l/x 分别为 245/70/80/60/40，global batch size 128。</li>
+<li>评测：COCO val2017；延迟同时报告 CPU ONNX（Intel Xeon 2.00 GHz）和 T4 TensorRT10。</li>
+</ul>
+<h4 id="42-coco-主结果table-7">4.2 COCO 主结果（Table 7）</h4>
+<table>
+  <thead>
+      <tr>
+          <th>模型</th>
+          <th style="text-align: right">mAP</th>
+          <th style="text-align: right">mAP (E2E)</th>
+          <th style="text-align: right">CPU ONNX (ms)</th>
+          <th style="text-align: right">T4 TRT10 (ms)</th>
+          <th style="text-align: right">Params (M)</th>
+          <th style="text-align: right">FLOPs (B)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>YOLO26n</td>
+          <td style="text-align: right">40.9</td>
+          <td style="text-align: right">40.1</td>
+          <td style="text-align: right">38.9</td>
+          <td style="text-align: right">1.7</td>
+          <td style="text-align: right">2.4</td>
+          <td style="text-align: right">5.4</td>
+      </tr>
+      <tr>
+          <td>YOLO26s</td>
+          <td style="text-align: right">48.6</td>
+          <td style="text-align: right">47.8</td>
+          <td style="text-align: right">87.2</td>
+          <td style="text-align: right">2.5</td>
+          <td style="text-align: right">9.5</td>
+          <td style="text-align: right">20.7</td>
+      </tr>
+      <tr>
+          <td>YOLO26m</td>
+          <td style="text-align: right">53.1</td>
+          <td style="text-align: right">52.5</td>
+          <td style="text-align: right">220.0</td>
+          <td style="text-align: right">4.7</td>
+          <td style="text-align: right">20.4</td>
+          <td style="text-align: right">68.2</td>
+      </tr>
+      <tr>
+          <td>YOLO26l</td>
+          <td style="text-align: right">55.0</td>
+          <td style="text-align: right">54.4</td>
+          <td style="text-align: right">286.2</td>
+          <td style="text-align: right">6.2</td>
+          <td style="text-align: right">24.8</td>
+          <td style="text-align: right">86.4</td>
+      </tr>
+      <tr>
+          <td>YOLO26x</td>
+          <td style="text-align: right">57.5</td>
+          <td style="text-align: right">56.9</td>
+          <td style="text-align: right">525.8</td>
+          <td style="text-align: right">11.8</td>
+          <td style="text-align: right">55.7</td>
+          <td style="text-align: right">193.9</td>
+      </tr>
+  </tbody>
+</table>
+<p><code>mAP</code> 是一对多头 + NMS 的结果，<code>mAP (E2E)</code> 是默认一对一头、无 NMS 的结果。五档的 E2E 差距稳定在 0.6–0.8 AP：n/s 各 -0.8，m/l/x 各 -0.6。E2E 是部署路径，不是精度路径。</p>
+<p><img src="/images/papers/yolo26/yolo26_f1.png" alt="图 1：YOLO26 在 COCO 上的精度-延迟 Pareto 前沿"></p>
+<p>图 1：YOLO26 在 COCO val2017 上的精度-延迟权衡，延迟为 T4 TensorRT FP16。来源：arXiv:2606.03748。</p>
+<p><img src="/images/papers/yolo26/yolo26_f3.svg" alt="图 3：YOLO26 部署时的两条推理路径"></p>
+<p>图 3：默认一对一头走无 NMS 路径，一对多头可选用 NMS 路径，同时保持较广的导出兼容性。来源：arXiv:2606.03748。</p>
+<h4 id="43-逐步消融与归因table-2">4.3 逐步消融与归因（Table 2）</h4>
+<table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th style="text-align: right">NMS AP</th>
+          <th style="text-align: right">E2E AP</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>YOLO11s baseline</td>
+          <td style="text-align: right">47.0</td>
+          <td style="text-align: right">–</td>
+      </tr>
+      <tr>
+          <td>− DFL</td>
+          <td style="text-align: right">46.4</td>
+          <td style="text-align: right">–</td>
+      </tr>
+      <tr>
+          <td>+ L1 Loss</td>
+          <td style="text-align: right">46.6</td>
+          <td style="text-align: right">–</td>
+      </tr>
+      <tr>
+          <td>+ STAL</td>
+          <td style="text-align: right">46.8</td>
+          <td style="text-align: right">–</td>
+      </tr>
+      <tr>
+          <td>+ Backbone/neck refinement</td>
+          <td style="text-align: right">47.0</td>
+          <td style="text-align: right">–</td>
+      </tr>
+      <tr>
+          <td>+ E2E / Progressive Loss</td>
+          <td style="text-align: right">47.0</td>
+          <td style="text-align: right">46.4 → 46.7</td>
+      </tr>
+      <tr>
+          <td>+ MuSGD</td>
+          <td style="text-align: right">47.6</td>
+          <td style="text-align: right">47.1</td>
+      </tr>
+      <tr>
+          <td>+ Objects365 pretraining</td>
+          <td style="text-align: right">48.0</td>
+          <td style="text-align: right">47.4</td>
+      </tr>
+      <tr>
+          <td>+ Hyperparameter search</td>
+          <td style="text-align: right">48.6</td>
+          <td style="text-align: right">47.8</td>
+      </tr>
+  </tbody>
+</table>
+<p>按 NMS AP 拆，可以粗略归因为：</p>
+<ul>
+<li><strong>Architecture</strong>：−DFL（-0.6）+ backbone/neck refinement（+0.2）= <strong>-0.4</strong>。</li>
+<li><strong>Training</strong>：+L1（+0.2）+ STAL（+0.2）+ Progressive Loss（+0.2）+ MuSGD（+0.4）= <strong>+1.0</strong>。</li>
+<li><strong>Data + HP search</strong>：Objects365（+0.4）+ 超参搜索（+0.6）= <strong>+1.0</strong>。</li>
+</ul>
+<p>47.0 − 0.4 + 1.0 + 1.0 = 48.6。这个拆法是按表格顺序累加的，<strong>顺序依赖，不是严格的 factorial 归因</strong>；但它足够说明：最终增益的大头来自训练配方、预训练数据和调参，而不是单个架构模块。</p>
+<h4 id="44-关键消融">4.4 关键消融</h4>
+<ul>
+<li><strong>Table 3（去 DFL）</strong>：640 下 +0.3 AP / +1.0 AP_L，1280 下 +1.3 AP / +2.2 AP_L。分辨率越高，DFL 的有限范围越容易成为瓶颈。</li>
+<li><strong>Table 4（MuSGD）</strong>：500 epoch 47.4 vs 600 epoch 47.0，+0.4 AP、少 16.7% epoch。它证明的是“更少 epoch 达到更高最终精度”，不等于总 wall-clock 更短。</li>
+<li><strong>Table 5（Progressive Loss）</strong>：等权 46.4 E2E；最佳 <code>(0.8,0.2)→(0.1,0.9)</code> 46.7；<code>(1.0,0.0)</code> 46.4；<code>(0.9,0.1)</code> 46.3。推理头从训练初期就要有监督。</li>
+<li><strong>Table 6（STAL）</strong>：TAL 46.6 / AP_S 29.0；<code>s_ref=16</code> 46.8 / 29.6；8 和 32 都更差。STAL 整体只 +0.2 AP，但 AP_S +0.6，且没有推理成本。</li>
+</ul>
+<h4 id="45-多任务结果">4.5 多任务结果</h4>
+<ul>
+<li>实例分割：相对 YOLO11，box AP +1.6 到 +2.5，mask AP +2.4 到 +3.7。</li>
+<li>姿态估计：相对 YOLO11，pose AP +2.1 到 +7.2；E2E 与 NMS 路径最多差 0.2 AP。</li>
+<li>OBB：相对 YOLO11，mAP +2.5 到 +3.4，AP75 +4.6 到 +6.0。</li>
+<li>YOLOE-26x：LVIS minival 文本提示 40.6 AP。</li>
+</ul>
+<h4 id="46-读实验时要留意的点">4.6 读实验时要留意的点</h4>
+<ul>
+<li><strong>E2E 与 NMS 的差距是稳定代价</strong>，不是训练失败；五档都差 0.6–0.8 AP。</li>
+<li><strong>DFL 的收益和分辨率强相关</strong>，不要在 640 的结果上否定高分辨率下的价值。</li>
+<li><strong>STAL 的整体 AP 增益很小</strong>，但 AP_S 提升更明显；如果业务是小目标密集，不能只看总 AP。</li>
+<li><strong>MuSGD 报的是 epoch</strong>，不是 wall-clock；总训练成本、显存、能耗都没有展开。</li>
+<li><strong>超参搜索和 Objects365 的贡献很大</strong>，但论文没有披露搜索空间与预算；和其它检测器对比时，要问 baseline 是否拿到同等预训练数据和调参预算。</li>
+<li>论文没有报告多次运行的方差/误差棒；单次结果的稳定性需要谨慎看待。</li>
+</ul>
+<h3 id="5-个人思考">5. 个人思考</h3>
+<ol>
+<li><strong>这篇论文的“架构创新”没有叙事里那么重。</strong> Table 2 里 architecture 净贡献约 -0.4，training +1.0，data + HP search +1.0。真正把 48.6 推上去的是训练配方、Objects365 和调参。做项目或写论文时，要分清“模块贡献”和“配方贡献”，不要把所有涨点都算到新模块头上。</li>
+<li><strong>去 DFL 是部署/硬件取舍，不是纯精度胜利。</strong> 单步会掉 0.6 AP，但头更轻、回归范围不受限；Table 3 在 1280 下 +1.3 AP / +2.2 AP_L。它更适合高分辨率、大目标、边缘部署的场景，而不是所有场景都无脑去 DFL。</li>
+<li><strong>E2E 是部署路径，不是精度路径。</strong> 默认一对一头比 NMS 路径低 0.6–0.8 AP，但输出固定、延迟确定、部署简单。工程上要按场景选：要确定性延迟和简单集成，用 E2E；要极限 mAP 且平台能高效跑 NMS，用一对多头。</li>
+<li><strong>STAL 的小目标收益真实但窄。</strong> 整体 +0.2 AP，AP_S +0.6；没有推理成本。如果业务是小目标密集（无人机、监控、工业缺陷），值得保留；如果只是大中目标，收益有限。MuSGD 省的是 epoch，不是必然的 wall-clock，论文没有报训练总时长。</li>
+<li><strong>论文最强的可能是“统一”，而不是单点。</strong> 一套 backbone/neck/heads 覆盖检测、实例分割、姿态、OBB、分类和开放词汇，任务头有一致增益；YOLOE-26 把开放词汇也接进来。这种“家族化”对工程落地比单个模块更有价值；代价是论文对每个模块的归因不够干净，审稿时要盯同预训练、同调参预算。</li>
+</ol>
+<h2 id="关键概念速查">关键概念速查</h2>
+<table>
+  <thead>
+      <tr>
+          <th>概念</th>
+          <th>一句话解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>NMS</td>
+          <td>非极大值抑制，按 IoU 和置信度去掉重复框；传统 YOLO 的后处理步骤。</td>
+      </tr>
+      <tr>
+          <td>一对一 / 一对多</td>
+          <td>一对多给一个 GT 多个正样本，需要 NMS；一对一给一个 GT 一个正样本，可直接输出。</td>
+      </tr>
+      <tr>
+          <td>DFL</td>
+          <td>把每条边的距离建模成 K 个 bin 的分布，再用期望解码；精度好但头重、范围有限。</td>
+      </tr>
+      <tr>
+          <td>TAL</td>
+          <td>Task-Aligned Learning，按分类与定位的对齐分数选候选 anchor。</td>
+      </tr>
+      <tr>
+          <td>STAL</td>
+          <td>在候选筛选时把极小题的 GT 边临时放宽到 16 px，保证至少有一个候选；原框不变。</td>
+      </tr>
+      <tr>
+          <td>MuSGD</td>
+          <td>Muon + SGD 的混合优化器；多维参数用混合更新，1D 参数用纯 SGD。</td>
+      </tr>
+      <tr>
+          <td>Progressive Loss</td>
+          <td>训练中把损失权重从一对多头逐步移向一对一头。</td>
+      </tr>
+      <tr>
+          <td>RLE</td>
+          <td>Residual Log-Likelihood Estimation，用残差对数似然估计关键点分布。</td>
+      </tr>
+      <tr>
+          <td>mAP vs mAP (E2E)</td>
+          <td>前者是一对多头 + NMS，后者是一对一头无 NMS；后者通常低 0.6–0.8 AP。</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="引用">引用</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@misc</span>{jocher2026ultralyticsyolo26unifiedrealtime,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Glenn Jocher and Jing Qiu and Mengyu Liu and Shuai Lyu and Fatih Cagatay Akyon and Muhammet Esat Kalfaoglu}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2026}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">eprint</span>=<span style="color:#e6db74">{2606.03748}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">archivePrefix</span>=<span style="color:#e6db74">{arXiv}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">primaryClass</span>=<span style="color:#e6db74">{cs.CV}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">doi</span>=<span style="color:#e6db74">{10.48550/arXiv.2606.03748}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="参考资料">参考资料</h2>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2606.03748">https://arxiv.org/abs/2606.03748</a></li>
+<li>PDF：<a href="https://arxiv.org/pdf/2606.03748">https://arxiv.org/pdf/2606.03748</a></li>
+<li>Ultralytics 文档：<a href="https://docs.ultralytics.com/models/yolo26/">https://docs.ultralytics.com/models/yolo26/</a></li>
+<li>代码与权重：<a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a></li>
+</ul>
+
+      </main>
+      <aside class="flex-ns mt5">
+        <div class="w-70-ns pl0 ml0-ns">
+          <h2 class="f3">论文信息</h2>
+          <ul>
+            <li><strong>标题:</strong> Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型</li>
+            <li><strong>日期:</strong> October 22, 2026</li>
+          </ul>
+        </div>
+      </aside>
+    </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.d1n910.com/" >
+    &copy;  D1N910-蛋糕 2026 
+  </a>
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://beian.miit.gov.cn/" target="_blank">粤ICP备20008011号</a>
+  <div><div class="ananke-socials"></div>
+</div>
+  </div>
+  
+  
+  <div class="links-section mt4">
+    <h4 class="white-70 f5">友情链接</h4>
+    <ul class="list flex flex-wrap pl0 mv0">
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://blog.gofixpro.online/" target="_blank" rel="noopener">命运多舛</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.grayfen.cn/" target="_blank" rel="noopener">Grayfen's Canvas</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.leoon.cn/" target="_blank" rel="noopener">Leoon Liang - Blog</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://wangyuan.info/" target="_blank" rel="noopener">网园资讯工作室</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://kooritea.moe/" target="_blank" rel="noopener">冰茶的糖果罐</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://dnick.cn/" target="_blank" rel="noopener">shoushangdetuolaji</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.yuanmoc.cn/" target="_blank" rel="noopener">YUANMOC</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://blog.j3n5en.com/" target="_blank" rel="noopener">J3n5en</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://ys.xjinfeng.top/archives" target="_blank" rel="noopener">吃花椒的喵酱</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </body>
+</html>

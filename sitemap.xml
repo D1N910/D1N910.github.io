@@ -2,8 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.d1n910.com/tags/all-in-rag/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/categories/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.d1n910.com/</loc>
-    <lastmod>2026-10-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/tags/datawhale/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/categories/plog/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/plog/course-learning-plog/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/plog/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/tags/rag/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/tags/</loc>
+    <lastmod>2026-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.d1n910.com/posts/mediapipe-temporal-model/</loc>
     <lastmod>2026-10-29T00:00:00+00:00</lastmod>
@@ -28,9 +52,5 @@
   </url><url>
     <loc>https://www.d1n910.com/posts/my-first-post/</loc>
     <lastmod>2024-05-08T16:59:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.d1n910.com/categories/</loc>
-  </url><url>
-    <loc>https://www.d1n910.com/tags/</loc>
   </url>
 </urlset>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Plog｜All-In-RAG 组队学习历程（连载中） | D1N910-蛋糕</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
+    <meta name="generator" content="Hugo 0.147.2">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.7ff9431cb2367d70f9d70f2e599df2263380329516d2f0b40236e19dcd542632.css" >
+
+
+
+  
+
+  
+
+  
+
+
+    
+
+
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://www.d1n910.com/plog/course-learning-plog/">
+    
+
+    <meta property="og:url" content="https://www.d1n910.com/plog/course-learning-plog/">
+  <meta property="og:site_name" content="D1N910-蛋糕">
+  <meta property="og:title" content="Plog｜All-In-RAG 组队学习历程（连载中）">
+  <meta property="og:description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="plog">
+    <meta property="article:published_time" content="2026-11-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-11-18T00:00:00+00:00">
+    <meta property="article:tag" content="All-in-RAG">
+    <meta property="article:tag" content="RAG">
+    <meta property="article:tag" content="Datawhale">
+
+  <meta itemprop="name" content="Plog｜All-In-RAG 组队学习历程（连载中）">
+  <meta itemprop="description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
+  <meta itemprop="datePublished" content="2026-11-15T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-11-18T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1349">
+  <meta itemprop="keywords" content="All-in-RAG,RAG,Datawhale">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Plog｜All-In-RAG 组队学习历程（连载中）">
+  <meta name="twitter:description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
+
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        <img src="/images/logo.jpg" class="w100 mw5-ns" alt="D1N910-蛋糕" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/" title="首页 page">
+              首页
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/posts/" title="文章 page">
+              文章
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/papers/" title="论文阅读 page">
+              论文阅读
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/games/xiaoshufajia/" title="游戏 page">
+              游戏
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/404/" title="这不是页面 page">
+              这不是页面
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Plogs
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Plog｜All-In-RAG 组队学习历程（连载中）</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-11-15T00:00:00Z">November 15, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p>连载中。每学完一节就往后面追加一记，课程结束后统一整理再发布。
+起始：2026-11-15 · 记录人：蛋糕 · 本期：All-In-RAG | 202611</p></blockquote>
+<h2 id="0-课程信息">0. 课程信息</h2>
+<table>
+  <thead>
+      <tr>
+          <th>项</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>课程名称</td>
+          <td>All-In-RAG（Datawhale 组队学习 · 202611 期）</td>
+      </tr>
+      <tr>
+          <td>来源 / 平台</td>
+          <td>教程仓库 <a href="https://github.com/datawhalechina/all-in-rag">https://github.com/datawhalechina/all-in-rag</a>；组织与打卡在微信群「All-In-RAG | 202611」</td>
+      </tr>
+      <tr>
+          <td>开始日期</td>
+          <td>2026-11-16（公告说「正式学习从下周开始」「打卡从下周一开始逐步开放」）</td>
+      </tr>
+      <tr>
+          <td>任务结构</td>
+          <td>共 <strong>Task 1–8</strong>，对应教程<strong>八章必修 + 两章选修实战</strong>；每章安排 <strong>2–3 天</strong>（Tartine 2026-11-16 16:04）</td>
+      </tr>
+      <tr>
+          <td>当前任务</td>
+          <td><strong>Task 1 · 第 1 章</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1</a>，截止 2026-11-18 21:00 —— <strong>11-18 已完成</strong>（见第 05 记）；等 Task 2 发布</td>
+      </tr>
+      <tr>
+          <td>预计周期</td>
+          <td>按每章 2–3 天推进；后续各 Task 的截止时间由助教逐个发布（待补）</td>
+      </tr>
+      <tr>
+          <td>想拿到的结果</td>
+          <td>待补</td>
+      </tr>
+      <tr>
+          <td>运营助教</td>
+          <td>Tartine（Datawhale 本期助教，组队学习流程问题可在群内问）</td>
+      </tr>
+      <tr>
+          <td>打卡形式</td>
+          <td>完成 Task 后在<strong>群里打卡接龙</strong>；官方会安排答疑时间</td>
+      </tr>
+      <tr>
+          <td>学习资料</td>
+          <td>目前<strong>没有 PDF</strong>，完整内容都在 GitHub 教程链接里（Tartine 2026-11-16 16:02）</td>
+      </tr>
+      <tr>
+          <td>结营激励</td>
+          <td>完成学习有机会获<strong>结营证书</strong>，优秀学习者有机会获<strong>实体书奖励</strong></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="1-进度总览">1. 进度总览</h2>
+<table>
+  <thead>
+      <tr>
+          <th>记</th>
+          <th>日期</th>
+          <th>主题</th>
+          <th>状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>00</td>
+          <td>2026-11-15</td>
+          <td>开营通知 / 课程信息登记（群公告发布于 11-13）</td>
+          <td>已记录</td>
+      </tr>
+      <tr>
+          <td>01</td>
+          <td>2026-11-15</td>
+          <td>任务列表待发 · 预习启动（开营前夜）</td>
+          <td>计划中 · 结果待补</td>
+      </tr>
+      <tr>
+          <td>02</td>
+          <td>2026-11-16</td>
+          <td>任务列表发布 · Task 1 开始</td>
+          <td>进行中</td>
+      </tr>
+      <tr>
+          <td>03</td>
+          <td>2026-11-16</td>
+          <td>1.1 RAG 简介 · 口述 vlog 笔记</td>
+          <td>已整理</td>
+      </tr>
+      <tr>
+          <td>04</td>
+          <td>2026-11-18</td>
+          <td>四步构建 RAG · 跑通示例与三个环境问题</td>
+          <td>已解决</td>
+      </tr>
+      <tr>
+          <td>05</td>
+          <td>2026-11-18</td>
+          <td>三道练习完成 · Task 1 学完</td>
+          <td>已完成</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>追加新记录时，同步更新这张表。</p></blockquote>
+<h2 id="2-学习记录">2. 学习记录</h2>
+<h3 id="第-00-记2026-11-15--开营通知">第 00 记｜2026-11-15 · 开营通知</h3>
+<blockquote>
+<p>依据：群公告截图 + 公告全文（Tartine，2026-11-13 16:54）。此时课程尚未正式开始，这一记先登记安排。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>本期是 Datawhale 的 <strong>All-In-RAG 组队学习</strong>，教程地址：<a href="https://github.com/datawhalechina/all-in-rag">https://github.com/datawhalechina/all-in-rag</a>。</li>
+<li>正式学习从下周开始；觉得周末时间更充裕的可以提前预习。</li>
+<li>组织方式：官方提供学习资料 + 学习任务时间节点划分，大家按节点完成任务，通过<strong>撰写学习笔记打卡</strong>展示学习情况；打卡从下周一起逐步开放。</li>
+<li>后续会在微信群办本期开营仪式：介绍开源组织与课程内容、自我介绍相互熟悉、组队。</li>
+<li>运营助教是 Tartine，组队学习流程有不清楚的可以在群里问。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<ul>
+<li>群聊名称：<code>All-In-RAG | 202611</code>；我在本群的昵称：中蛋糕。</li>
+<li>公告时间线：<code>2026-11-13 16:54 群公告</code> → <code>2026-11-16 起正式学习 / 打卡逐步开放</code> → <code>待定：开营仪式、组队</code>。</li>
+<li>教程仓库：<code>https://github.com/datawhalechina/all-in-rag</code></li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>实操踩坑：暂无（还没开课）。</li>
+<li>⚠️ 防骗提醒（群公告原文）：Datawhale 官方通知只会由助教在群内发布，主动加好友私聊发资料的都不是官方，注意辨别。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>学习任务的具体时间节点划分（官方后续提供）。</li>
+<li>打卡的具体格式、提交位置与各节点开放时间。</li>
+<li>开营仪式的具体时间、组队方式。</li>
+<li>预习从教程哪一章开始。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-01-记2026-11-15--任务列表待发先预习">第 01 记｜2026-11-15 · 任务列表待发，先预习</h3>
+<blockquote>
+<p>依据：群内问答（21:49 / 22:01 / 22:31）+ 教程仓库章节结构查阅。这一记记录开营前夜的安排和预习计划，计划尚未执行。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>群里有同学问「有具体的任务列表吗」，助教 Tartine 回复：<strong>有的，明早会整理发出</strong>，可以先查看教程链接。</li>
+<li>确认 Tartine 是 <strong>Datawhale 本期助教</strong>（不是同期同学）。</li>
+<li>所以今晚没有官方任务节点，预习范围自己定；明早（2026-11-16）拿到正式任务列表后再对齐。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<ul>
+<li>群内时间线：
+<ul>
+<li><code>21:49</code> FZK：有具体的任务列表吗</li>
+<li><code>22:01</code> Anna：[庆祝]</li>
+<li><code>22:31</code> Tartine：有的，明早会整理发出[鼓掌] 可以先查看教程链接</li>
+</ul>
+</li>
+<li>教程：<a href="https://github.com/datawhalechina/all-in-rag">https://github.com/datawhalechina/all-in-rag</a>；在线阅读：<a href="https://datawhalechina.github.io/all-in-rag/">https://datawhalechina.github.io/all-in-rag/</a></li>
+<li>章节地图（查仓库 README 与 <code>docs/_sidebar.md</code>）：
+<ul>
+<li>第 1 章 解锁 RAG：RAG 简介 / 准备工作 / 四步构建 RAG</li>
+<li>第 2 章 数据准备：数据加载 / 文本分块</li>
+<li>第 3–6 章：索引构建 / 检索优化 / 生成集成 / 系统评估</li>
+<li>第 7–10 章：高级架构（含 Agentic RAG、知识图谱 RAG）/ 项目实战</li>
+</ul>
+</li>
+<li>第一章示例 <code>code/C1/01_langchain_example.py</code>：Python 3.12.7 + conda 环境 <code>all-in-rag</code>，需 <code>DEEPSEEK_API_KEY</code>，首次运行会下载 <code>BAAI/bge-small-zh-v1.5</code> 嵌入模型。</li>
+</ul>
+<p><strong>今晚预习待办（计划，尚未执行）</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> 定环境：云端 Codespaces / Cloud Studio 优先（本机磁盘只剩约 22Gi）</li>
+<li><input disabled="" type="checkbox"> 拿 API Key（AIHubmix 免费模型）</li>
+<li><input disabled="" type="checkbox"> 建 <code>all-in-rag</code> 环境、装 <code>requirements.txt</code></li>
+<li><input disabled="" type="checkbox"> 读 1.1 RAG 简介，跑通 <code>01_langchain_example.py</code></li>
+<li><input disabled="" type="checkbox"> 选读第 2 章数据加载 / 文本分块</li>
+</ul>
+<blockquote>
+<p>执行结果记到下一记。</p></blockquote>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>实操踩坑：暂无（预习还没开始）。</li>
+<li>预习前已知的两个环境差异：本机是 zsh，教程写 <code>~/.bashrc</code>，应写 <code>~/.zshrc</code>（或直接在 <code>code/C1/.env</code> 放 Key，示例代码里有 <code>load_dotenv()</code>）；Milvus 的 <code>docker-compose</code> 要到第三章才用，今晚不用开。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>具体任务列表与时间节点（明早助教发出后补）。</li>
+<li>打卡格式、提交位置、各节点开放时间。</li>
+<li>开营仪式时间、组队方式。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-02-记2026-11-16--任务列表发布task-1-开始">第 02 记｜2026-11-16 · 任务列表发布，Task 1 开始</h3>
+<blockquote>
+<p>依据：群内消息（15:51–16:04）。第 01 记里「具体任务列表与时间节点」的待确认项，这一记有答案了。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>本期学习路线共 <strong>Task 1–8</strong>；完成 Task 后在<strong>群里打卡接龙</strong>，官方会安排答疑时间。</li>
+<li>学习内容共 <strong>八章必修 + 两章选修实战</strong>，每章安排 <strong>2–3 天</strong>（助教回答 FZK「有没有具体的时间节点」）。</li>
+<li><strong>Task 1</strong>：第 1 章 <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1</a>，⏰ 截止 <strong>2026-11-18 21:00</strong>。</li>
+<li>资料形式：<strong>目前没有 PDF</strong>，完整学习内容都在链接里。</li>
+<li>激励：完成学习有机会获得<strong>结营证书</strong>，优秀学习者有机会获得<strong>实体书奖励</strong>。</li>
+<li>群友反馈（Haluki / N，15:58）：好像没有自我介绍和组队 —— 这与 11-13 公告里提到的开营仪式不一致，助教暂无回应，先记下待确认。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<ul>
+<li>时间线：
+<ul>
+<li><code>11-15 22:31</code> Tartine：任务列表明早整理发出，可以先看教程链接</li>
+<li><code>11-16 15:51</code> Tartine：本期共 Task 1–8，完成学习在群里打卡接龙，会安排答疑时间</li>
+<li><code>11-16 15:52</code> Tartine：发布 Task 1 + 链接 + 截止时间 11-18 21:00</li>
+<li><code>11-16 15:58</code> Haluki / N：好像没有自我介绍和组队哎 / 是哎</li>
+<li><code>11-16 16:01</code> 邱华：有没有完整学习内容的 PDF</li>
+<li><code>11-16 16:02</code> FZK：这个有具体的时间节点吗</li>
+<li><code>11-16 16:02</code> Tartine：目前没有 PDF，完整学习内容都在链接里</li>
+<li><code>11-16 16:04</code> Tartine：一共八章 + 两章选修实战，每章安排 2–3 天</li>
+</ul>
+</li>
+<li>Task 1 链接：<code>https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1</code></li>
+<li>章节对应（对照第 01 记的章节地图推测）：Task 1–8 大致对应第 1–8 章，第 9、10 章为选修实战；仓库 README 里第 10 章仍标注「规划中」。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>「有没有完整 PDF」→ 官方答复：没有，内容全在 GitHub 链接里，不用再找 PDF。</li>
+<li>「有没有具体时间节点」→ 官方答复：按章推进、每章 2–3 天；目前只公布 Task 1 的截止时间，后续节点待发。</li>
+<li>昨晚预习结果：未反馈，待补（第 01 记的待办清单先留着，不代填）。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>打卡接龙的具体格式 / 接龙文案要求。</li>
+<li>答疑时间的具体安排。</li>
+<li>Task 2–8 各自的截止时间。</li>
+<li>开营仪式、自我介绍、组队是否还会进行（群友已提出，暂无答复）。</li>
+<li>11-13 公告的「打卡从下周一起逐步开放」与现在的「群里打卡接龙」怎么对应。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-03-记2026-11-16--11-rag-简介开卷考试演进三阶段与rag-已死">第 03 记｜2026-11-16 · 1.1 RAG 简介：开卷考试、演进三阶段与「RAG 已死？」</h3>
+<blockquote>
+<p>依据：本人录制的口述 vlog（录屏 <code>2026-11-16 22.50.40.mov</code>，27 分 40 秒，转录全文带时间戳），对应教程 <code>docs/chapter1/01_RAG_intro.md</code>。以下是口述整理稿，保留当时的理解和疑问；转录误识别的术语（IG→RAG、HYYDE→HyDE、longchain→LangChain 等）已还原。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li><strong>RAG 是什么</strong>：Retrieval-Augmented Generation，检索增强生成。解锁大语言模型「知其然不知其所以然」的技术范式 —— 把模型的<strong>参数化知识</strong>（训练时固化的记忆）和<strong>非参数化知识</strong>（可随时更新的外部数据）结合起来。</li>
+<li><strong>两阶段架构</strong>：检索阶段用嵌入模型把知识库编码成向量索引，查询时也向量化，靠相似度检索召回相关内容；生成阶段把检索到的文档和用户的原始问题一起送进 prompt，引导 LLM（比如 DeepSeek）有理有据地生成。</li>
+<li><strong>技术演进三阶段</strong>：Naive RAG（索引 → 检索 → 生成）→ Advanced RAG（检索前查询重写、检索后重排过滤）→ Modular RAG（动态路由、查询转换、多路融合、编排与循环）。</li>
+<li><strong>为什么用 RAG</strong>：提示词工程 → RAG → 微调的取舍路径；本质是「更依赖外部上下文」还是「更依赖模型本身」。</li>
+<li><strong>配套组件</strong>：LangChain / LlamaIndex 框架、向量数据库、最小可行系统四步、评估方式（检索相关性 + 生成质量）。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 开卷考试与两阶段</strong></p>
+<ul>
+<li>我自己用的比喻：LLM 训练完就学了东西，但考的内容不一定都学过；它旁边有一本书（外部资料），可以翻书答。开卷考试，既能用学到的，也能查资料。</li>
+<li>嵌入模型把知识库编码成向量索引，「就相当于是 ID」。我拿图书馆打比方：书先按类别编码放好，科学类放一块、有编号，按号查。</li>
+<li>相似度检索：「一个 A 向量一个 B 向量，看方向是不是保持一致，这叫同向而行」，同向就认为相关。</li>
+<li>生成阶段：「把用户这个问题，还有根据这个问题从知识库里搜的东西一起拉过来」，按预设 prompt 引导模型输出。</li>
+<li>我自己的延伸：搜到的东西<strong>不一定真相关</strong>，这取决于检索阶段的能力。prompt 指令就像同一个问题抛给农业学家、生物学家、数学家，思考方式不一样 ——「我做我这个模块的，可能就得有专门的一个 prompt」。</li>
+</ul>
+<p><strong>② 三阶段演进（口述原话整理）</strong></p>
+<ul>
+<li><strong>Naive RAG</strong>：傻瓜式，索引 → 检索 → 生成。</li>
+<li><strong>Advanced RAG</strong>：索引后加「预检索」——查询重写，问的是 A，先拓展再检索；检索后加「后检索」——重排序过滤，「检索出 100 个知识点，我只要前 10 个，排个序看重要性」。</li>
+<li><strong>Modular RAG</strong>：索引阶段做 chunk 优化——小块 / 单句检索，再带上父级更大的块和上下文，也就是 <strong>small to big</strong>；组织方式上有结构化分层（PDF → 章节 → 块）和知识图谱（师兄师姐做过，我自己没做）。</li>
+<li>我给模块化 RAG 的一句话：「把『我爱你，你爱不爱我』这种很普通的话，通过检索变得语义丰富 —— 变成地球上的我，不是火星上的我。」</li>
+<li>离线 vs 在线：索引建立是离线提前准备的；用户一问才检索、生成是在线。</li>
+<li>模块化关键组件：动态路由、查询转换、多路融合。</li>
+</ul>
+<p><strong>③ HyDE、查询改写与编排（当时不懂，边查边记）</strong></p>
+<ul>
+<li>图里出现 HyDE 我不知道是什么，问了语音助手才查到：「假设性文档嵌入」。把一句简单问题（「深圳电动车上牌」）扩写成「今天早上我要去深圳，我要给深圳电动车上牌」这种假设性文档，再拿它去检索相似文档，「可能会找到更多的东西」。</li>
+<li>查询变形 / 扩张：一个问题拆成子问题（什么是电动车、什么是上牌……）；查询结构化则是 Text2SQL / Text2Cypher 那类（当时不懂）。</li>
+<li>检索环节：混合检索（嵌入 + 关键词）、检索来源（句子块 / 文章）、检索器选择；检索后重排、压缩、再让大模型挑哪些可用。</li>
+<li>验证环节：拿外部知识核对是不是幻觉、问题到底能不能回答、有没有隐私内容；答不上就再走一轮 RAG。</li>
+<li><strong>Orchestration（编排）</strong>：我翻译成了「管弦乐队」。路由判断——难问题必须从知识库找，简单问题如 1+1=2 直接让 LLM 自己答；调度——判断要不要检索、生成后要不要再检索，循环应该有次数限制。编排产生的推理和检索结果还能回流到知识图谱，反过来增强检索。</li>
+</ul>
+<p><strong>④ 提示词 → RAG → 微调：我的取舍</strong></p>
+<ul>
+<li>教程路径：提示词能搞定就先用提示词；不行上 RAG；还不行才微调（把知识强制学进模型，「不需要旁边挂一个字典」）。</li>
+<li>图上两条轴：越依赖上下文越要 RAG，越依赖模型本身越要微调。我当时就觉得<strong>两者结合才是好方向</strong>。</li>
+<li>我的理由：微调要从头微调一遍，增量微调可能会遗忘，「就像人一样」；RAG 接上知识后原有能力不丢失，新知识只要更新 RAG，不用重训模型 ——「所以我觉得这个当然是好的方向」。</li>
+<li>反例也记：像飞 5.2 / ChatGPT 这类模型，提示词一搞答案就出来，那种场景确实不用 RAG 也不用微调；公司自己的知识、豆包嵌进飞书做的企业内 RAG，才是 RAG 的主场。</li>
+</ul>
+<p><strong>⑤ RAG 解决什么、怎么评估</strong></p>
+<ul>
+<li>静态知识局限（训练完就固定，最新知识靠外部动态更新）、幻觉（先保证 RAG 里的知识是新的、别有错、别像 NPD 一样撒谎）、法律医疗这类严肃场景的可信度、隐私与本地知识。</li>
+<li>多元集成：换更好的检索组件就行，「我已经有一个大模型部署好了，只需要时不时给他换一个脑子」。</li>
+<li>最小可行系统（顺着教程捋的四步）：① 数据准备与清洗——PDF / Word 标准化，<strong>按语义切块而不是随便截字符</strong>，避免信息支离破碎；② 索引构建——块转向量存库，<strong>关联原数据来源、页码、章节</strong>；③ 检索优化——混合检索 + 重排；④ 生成——prompt = 问题 + 上下文 + 规则。</li>
+<li>快速验证：Dify、FastGPT 这类可视化平台把复杂 RAG 封装好了，上传就能用；自己开发就用 LangChain / LlamaIndex。</li>
+<li>评估两块：<strong>检索相关性</strong>（找到的东西是否包含答案）、<strong>生成质量</strong>（语义准确性 + 词汇匹配度 / 专业用词是否得当）。</li>
+<li>优化方向：性能上索引分层找得更快、多模态扩展找得更全；架构上用分支 / 循环替代纯线性——「第一次找不对，第二次再找」，鲁棒性更强。关于「线性做准了是不是也一样好」，我自己是犹豫的：先说「一样可以搞得很好嘛」，又说「还是复杂的设计更稳一点吧」——留着这个犹豫，后面用实践验证。</li>
+</ul>
+<p><strong>⑥ 一句关于「碳基生物」的旁白（原话）</strong></p>
+<blockquote>
+<p>AI 确实可以有更精细的控制力，现在我都觉得我不知道要不要读这些东西，好像是不是 AI 帮我读就好。但我感觉我作为碳基生物还是要仔仔细细自己躺一遍，然后去做一些思考，就是自己脑子也要多动嘛，微调一下自己的脑子。</p></blockquote>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>语音转录把 RAG 识别成 IG、LangChain 识别成 longchain、HyDE 识别成 HYYDE、Naive RAG 识别成 navy rag、ChatGPT 识别成 XGPT、Elasticsearch 识别成 elastar、Dify 识别成 dey；本篇已按术语还原，「飞 5.2」按转录说明是疑似模型名误识别，待核。</li>
+<li>口述里把 RAG 的全称说成 retrieval <strong>argument</strong> generation，正确是 retrieval <strong>augmented</strong> generation。</li>
+<li>当时猜「FT 是 finetune 的意思吗」——在 RAG 框架图的检索环节里未必是微调，先标<strong>待核</strong>。</li>
+<li>「KB 是什么意思我不懂，我猜是类」——KB 应为 Knowledge Base（知识库）；「结构化组织」那块当时理解成 PDF → 章节 → 块的分层，待后面章节确认。</li>
+<li>「RAG 已死」那段：我当时吐槽上下文越来越长（几百万 token），好像 RAG 就死了，还猜助教不说话是不是觉得 RAG 死掉了。教程的结论是 <strong>RAG 死不了</strong> —— 它本质是「把内在参数化知识和外在非参数化知识相结合」这道经典题的一种解法。（补记：11-16 15:51–16:04 助教在群里发过完整任务安排，见第 02 记；当时口述没提到。）</li>
+<li>口述里说「十八十九号晚上 9 点之前」，以群里 Task 1 公告的 <strong>11-18 21:00</strong> 为准。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>HyDE 的原理细节（当时只查到字面意思）。</li>
+<li>Text2SQL / Text2Cypher 是什么。</li>
+<li>检索图里的 FT 到底指什么。</li>
+<li>增量微调是否可行、会不会遗忘（我自己也没有结论）。</li>
+<li>向量数据库选型：以前用 Elasticsearch 多，教程里的 Chroma / Milvus 还没动手。</li>
+<li>「RAG 已死」争论的另一面：长上下文真的能替代检索吗？</li>
+<li>RAG 自动评估工具怎么用（当时猜是「数据放进去几年没用过是不是可以替掉」）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-04-记2026-11-18--四步构建-rag跑通示例与三个环境问题">第 04 记｜2026-11-18 · 四步构建 RAG：跑通示例与三个环境问题</h3>
+<blockquote>
+<p>依据：本人的排错笔记。正在看 <code>docs/chapter1/03_get_start_rag.md</code>，跑 <code>01_langchain_example.py</code> 时三个问题依次出现，逐个击破后运行成功（最终切换 DeepSeek 端点）。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>按教程跑第一章第三节的示例：脚本在 <code>/workspace/code/C1/01_langchain_example.py</code>，环境是 <code>all-in-rag</code> conda 环境（Python 3.12）。</li>
+<li>三个问题依次出现：① NLTK 资源缺失 → ② 目录权限过松导致资源仍读不到 → ③ 调用大模型 API 时 SSL 连接被切断。</li>
+<li>前两个卡在 <code>loader.load()</code> 阶段，第三个卡在 <code>llm.invoke(...)</code>。三个都属于<strong>环境 / 网络限制</strong>，与 RAG 代码逻辑本身无关。</li>
+<li>全部处理后脚本运行成功：最终把 LLM 端点从 AIHubmix 换成 <strong>DeepSeek</strong>（<code>deepseek-chat</code>）。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① NLTK 资源缺失，自动下载被安全策略拦截</strong></p>
+<ul>
+<li>现象：<code>loader.load()</code> 崩溃，核心报错：
+<pre tabindex="0"><code>LookupError: Resource &#39;punkt_tab&#39; not found.
+[nltk_data] Error loading punkt_tab: Security Violation
+[nltk_data]     [pathsec.urlopen]: SSRF attempt to restricted IP 198.18.0.12
+</code></pre></li>
+<li>原因：<code>UnstructuredMarkdownLoader</code> 底层用 <code>unstructured</code> 判断文本类型，会调 NLTK 的 <code>sent_tokenize</code> 和词性标注，需要 <code>punkt_tab</code>、<code>averaged_perceptron_tagger_eng</code> 两个数据包；程序想自动联网下载，但被沙箱安全策略拦截（<code>198.18.0.12</code> 是被劫持到的受限 IP），下载失败 → 本地找不到资源 → 崩。</li>
+<li>解决（手动下载 + 解压，绕开自动下载）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/nltk_data/tokenizers ~/nltk_data/taggers
+</span></span><span style="display:flex;"><span>cd /tmp
+</span></span><span style="display:flex;"><span>curl -fL --retry <span style="color:#ae81ff">2</span> -o punkt_tab.zip <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip
+</span></span><span style="display:flex;"><span>curl -fL --retry <span style="color:#ae81ff">2</span> -o avg_perceptron_eng.zip <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/taggers/averaged_perceptron_tagger_eng.zip
+</span></span><span style="display:flex;"><span>unzip -q punkt_tab.zip -d ~/nltk_data/tokenizers/
+</span></span><span style="display:flex;"><span>unzip -q avg_perceptron_eng.zip -d ~/nltk_data/taggers/
+</span></span></code></pre></div></li>
+<li>jsdelivr 镜像备选（被墙时把上面的 raw 链接换成 <code>https://cdn.jsdelivr.net/gh/nltk/nltk_data@gh-pages/packages/...</code>）。</li>
+<li><strong>完全离线备选</strong>：在 <code>from langchain_community.document_loaders import ...</code> 之后、<code>loader.load()</code> 之前插入：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> unstructured.partition.text_type <span style="color:#66d9ef">as</span> _tt
+</span></span><span style="display:flex;"><span>_tt<span style="color:#f92672">.</span>sent_tokenize <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> text: [
+</span></span><span style="display:flex;"><span>    s <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(?&lt;=[.!?。！？])\s+&#39;</span>, text) <span style="color:#66d9ef">if</span> s<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div></li>
+</ul>
+<p><strong>② 目录权限过松，NLTK 拒绝读取数据</strong></p>
+<ul>
+<li>现象：数据下了仍报 <code>LookupError</code>，但多了提示：<code>Refused, writable by other accounts ... '/home/ubuntu/nltk_data'</code>，并建议 <code>chmod go-w</code>。</li>
+<li>原因：NLTK 出于安全考虑，拒绝从「组 / 其他人可写」的目录读数据；文件在，但被拒绝加载。</li>
+<li>解决（收紧权限）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod go-w /home/ubuntu/nltk_data
+</span></span><span style="display:flex;"><span>chmod -R go-w /home/ubuntu/nltk_data
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证：能打印路径即成功</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;import nltk; print(nltk.data.find(&#39;tokenizers/punkt_tab/english/&#39;))&#34;</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;import nltk; print(nltk.data.find(&#39;taggers/averaged_perceptron_tagger_eng/&#39;))&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>若 <code>/home/ubuntu</code> 本身也是 group/world-writable，同样 <code>chmod go-w</code>；改完仍找不到就 <code>unzip -o -q</code> 覆盖解压一次。</p></blockquote>
+</li>
+</ul>
+<p><strong>③ 调用大模型 API 时 SSL 连接被切断</strong></p>
+<ul>
+<li>现象：NLTK 解决、嵌入模型 <code>BAAI/bge-small-zh-v1.5</code> 也下载成功，但到 <code>llm.invoke(...)</code> 报：
+<pre tabindex="0"><code>httpcore.ConnectError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol
+openai.APIConnectionError: Connection error.
+</code></pre></li>
+<li>原因：请求 <code>https://aihubmix.com/v1</code> 时 TLS 握手被中途掐断，沙箱对外网 API 域名的限制 / 劫持。</li>
+<li>诊断命令：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -v --max-time <span style="color:#ae81ff">15</span> https://aihubmix.com/v1/models 2&gt;&amp;<span style="color:#ae81ff">1</span> | head -40
+</span></span><span style="display:flex;"><span>getent hosts aihubmix.com          <span style="color:#75715e"># 解析到 198.18.x.x 即被劫持</span>
+</span></span><span style="display:flex;"><span>curl -v --max-time <span style="color:#ae81ff">15</span> https://api.deepseek.com/v1/models 2&gt;&amp;<span style="color:#ae81ff">1</span> | head -20
+</span></span></code></pre></div></li>
+<li>解决：把脚本第 50–57 行的 aihubmix 配置注释掉，启用 DeepSeek 配置：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;deepseek-chat&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">4096</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;DEEPSEEK_API_KEY&#34;</span>),
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://api.deepseek.com&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div>（备选思路：开头设 <code>HTTPS_PROXY</code>；或加 <code>http_client=httpx.Client(verify=False)</code> 放宽 SSL 验证。）</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>根因</th>
+          <th>解决</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>NLTK 资源缺失</td>
+          <td>自动下载被 SSRF 拦截</td>
+          <td>curl 手动下载 + 解压到 <code>~/nltk_data</code></td>
+      </tr>
+      <tr>
+          <td>资源仍无法加载</td>
+          <td>目录权限过松</td>
+          <td><code>chmod go-w</code> 收紧权限</td>
+      </tr>
+      <tr>
+          <td>LLM 调用失败</td>
+          <td>API 域名连接被切断</td>
+          <td>切换端点为 DeepSeek</td>
+      </tr>
+  </tbody>
+</table>
+<p>三个问题均为<strong>环境 / 网络限制</strong>导致，与 RAG 代码逻辑本身无关；全部处理后脚本运行成功。</p>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>暂无（这次三个都解决了）。<code>02_llamaIndex_example.py</code> 还没跑，下回补上。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-05-记2026-11-18--task-1-练习收尾过滤输出调分块给-llamaindex-加注释">第 05 记｜2026-11-18 · Task 1 练习收尾：过滤输出、调分块、给 LlamaIndex 加注释</h3>
+<blockquote>
+<p>依据：本人完成的 <code>03_get_start_rag.md</code> 三道练习。做完这三题，Task 1（第 1 章）算学完了。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>练习一：LangChain 示例运行后 <code>answer</code> 对象带着一堆参数，用 <code>print(answer.content)</code> 只取真正的回答文本。</li>
+<li>练习二：把 <code>RecursiveCharacterTextSplitter()</code> 改成 <code>chunk_size=100, chunk_overlap=50</code>，观察分块参数对结果的影响。</li>
+<li>练习三：给 LlamaIndex 示例 <code>02_llamaIndex_example.py</code> 加上逐行注释，并把端点从 AIHubmix 换成 DeepSeek —— 第 04 记里留的「LlamaIndex 示例还没跑」这次补上了。</li>
+<li>三题做完，<strong>Task 1（第 1 章：RAG 简介 / 准备工作 / 四步构建 RAG）学完</strong>。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 过滤输出，只要 content</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(answer<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><p>之前直接 <code>print(answer)</code>，<code>content</code>、<code>additional_kwargs</code>、<code>response_metadata</code>、<code>token_usage</code>、<code>id</code>、<code>usage_metadata</code> 一起打出来；真正要的回答只在 <code>content</code> 里。</p>
+<p><strong>② 改分块参数，观察输出变化</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>text_splitter <span style="color:#f92672">=</span> RecursiveCharacterTextSplitter(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+</span></span></code></pre></div><ul>
+<li>改动前（教程默认参数）：回答里举了自然界羚羊、股票交易、雅达利游戏、选择餐馆、做广告、挖油、玩《街头霸王》等多个例子。</li>
+<li>改动后（<code>chunk_size=100, chunk_overlap=50</code>）：输出里提到「文中举了选择餐馆的例子」。</li>
+<li>我的观察：块切小、重叠调高之后，回答覆盖的例子明显变少了 —— 分块大小确实影响能召回多少内容。（为什么，留到第二章「文本分块」再挖。）</li>
+</ul>
+<p><strong>③ 给 LlamaIndex 代码加注释（改后版本）</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 使用 AIHubmix（注释掉，实际走 DeepSeek）</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Settings.llm = OpenAILike(</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     model=&#34;glm-4.7-flash-free&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     api_key=os.getenv(&#34;DEEPSEEK_API_KEY&#34;),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     api_base=&#34;https://aihubmix.com/v1&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     is_chat_model=True</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># )</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 DeepSeek</span>
+</span></span><span style="display:flex;"><span>Settings<span style="color:#f92672">.</span>llm <span style="color:#f92672">=</span> OpenAILike(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;deepseek-chat&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;DEEPSEEK_API_KEY&#34;</span>),
+</span></span><span style="display:flex;"><span>    api_base<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://api.deepseek.com&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用中文嵌入模型</span>
+</span></span><span style="display:flex;"><span>Settings<span style="color:#f92672">.</span>embed_model <span style="color:#f92672">=</span> HuggingFaceEmbedding(<span style="color:#e6db74">&#34;BAAI/bge-small-zh-v1.5&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 加载本地 markdown 文件</span>
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> SimpleDirectoryReader(input_files<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;../../data/C1/markdown/easy-rl-chapter1.md&#34;</span>])<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 构建向量存储索引</span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(docs)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 构建查询引擎</span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 获取提示词</span>
+</span></span><span style="display:flex;"><span>print(query_engine<span style="color:#f92672">.</span>get_prompts())
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查询</span>
+</span></span><span style="display:flex;"><span>print(query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;文中举了哪些例子?&#34;</span>))
+</span></span></code></pre></div><ul>
+<li>和 LangChain 版对照：LangChain 用 <code>ChatOpenAI</code> + <code>HuggingFaceEmbeddings</code> + <code>InMemoryVectorStore</code>，LlamaIndex 用 <code>Settings</code> 全局配 LLM / embed_model + <code>VectorStoreIndex</code>；两边都指向同一份 markdown、同一个 <code>BAAI/bge-small-zh-v1.5</code>，问的是同一个问题。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>无新增踩坑；沿用第 04 记的方案，API 仍走 DeepSeek 端点。</li>
+<li>练习二的输出差异不是报错，是参数带来的结果变化，先记现象、不下定论。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>query_engine.get_prompts()</code> 打出来的提示词模板具体长什么样（这次只调用了，没细看）。</li>
+<li><code>chunk_size</code> / <code>chunk_overlap</code> 怎么调才合适，留到第二章「文本分块」。</li>
+<li>LangChain 和 LlamaIndex 两套写法的适用边界（这次只是各跑一遍）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h2 id="3-结课复盘最后写">3. 结课复盘（最后写）</h2>
+<ul>
+<li>最大的收获：</li>
+<li>和开头的预期差在哪：</li>
+<li>做出来的东西 / 能拿去用的部分：</li>
+<li>如果重来一次会怎么学：</li>
+</ul>
+<h2 id="4-附录环境与应用2026-11-18-更新">4. 附录：环境与应用（2026-11-18 更新）</h2>
+<p><strong>环境选型</strong>：DeepSeek API + <strong>Cloud Studio</strong>（看完 <code>02_preparation.md</code> 后定的方案，对应教程第 1 章第 2 节「三、Cloud Studio 环境配置（国内环境推荐）」）。</p>
+<p><strong>Cloud Studio 应用模板页</strong>（截图记录；页面顶部有「+ 创建应用」「查看全部」，筛选标签：全部 / AI模板 / 语言环境 / 前端开发 / 后端开发 / 静态网站）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>模板</th>
+          <th>简介</th>
+          <th>使用量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>All In One</td>
+          <td>集成多种编程语言和工具，适合多技术栈项目</td>
+          <td>110828</td>
+      </tr>
+      <tr>
+          <td>Python</td>
+          <td>适合 Python 开发，提供解释器支持</td>
+          <td>86441</td>
+      </tr>
+      <tr>
+          <td>Jupyter Notebook</td>
+          <td>交互式编程环境，适合数据科学和机器学习</td>
+          <td>32782</td>
+      </tr>
+      <tr>
+          <td>Pytorch</td>
+          <td>基于 PyTorch 官方 examples 的最小示例</td>
+          <td>32644</td>
+      </tr>
+      <tr>
+          <td>Ubuntu</td>
+          <td>提供 Linux 环境，满足特定操作系统需求</td>
+          <td>28270</td>
+      </tr>
+      <tr>
+          <td>C/C++</td>
+          <td>适合 C/C++ 开发，提供编译器支持</td>
+          <td>22240</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>页面底部还有更多模板，截图未显示完整。</p></blockquote>
+<p><strong>待补（等我自己跑完填）</strong></p>
+<ul>
+<li>实际用哪个模板创建应用、应用名称：待补</li>
+<li>DeepSeek API Key 配在哪（<code>~/.bashrc</code> 还是 <code>code/C1/.env</code>）：待补</li>
+<li><code>pip install -r requirements.txt</code> 与 <code>01_langchain_example.py</code>：<strong>已跑通</strong>（<code>all-in-rag</code> / Python 3.12，LLM 端点切到 DeepSeek；三个环境问题见第 04 记）</li>
+</ul>
+<blockquote>
+<p>教程推荐的是「创建应用 → 从 Git 仓库导入」，填 <code>https://github.com/datawhalechina/all-in-rag.git</code>；若走上面的模板创建，进来后还要手动 clone 仓库。</p></blockquote>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/all-in-rag/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">All-in-RAG</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/rag/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">RAG</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/datawhale/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Datawhale</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://www.d1n910.com/" >
+    &copy;  D1N910-蛋糕 2026 
+  </a>
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://beian.miit.gov.cn/" target="_blank">粤ICP备20008011号</a>
+  <div><div class="ananke-socials"></div>
+</div>
+  </div>
+  
+  
+  <div class="links-section mt4">
+    <h4 class="white-70 f5">友情链接</h4>
+    <ul class="list flex flex-wrap pl0 mv0">
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://blog.gofixpro.online/" target="_blank" rel="noopener">命运多舛</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.grayfen.cn/" target="_blank" rel="noopener">Grayfen's Canvas</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.leoon.cn/" target="_blank" rel="noopener">Leoon Liang - Blog</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://wangyuan.info/" target="_blank" rel="noopener">网园资讯工作室</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://kooritea.moe/" target="_blank" rel="noopener">冰茶的糖果罐</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://dnick.cn/" target="_blank" rel="noopener">shoushangdetuolaji</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://www.yuanmoc.cn/" target="_blank" rel="noopener">YUANMOC</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://blog.j3n5en.com/" target="_blank" rel="noopener">J3n5en</a>
+      </li>
+      <li class="mh2">
+        <a class="f6 white-70 hover-white no-underline" href="https://ys.xjinfeng.top/archives" target="_blank" rel="noopener">吃花椒的喵酱</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </body>
+</html>

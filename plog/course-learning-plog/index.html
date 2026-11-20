@@ -51,7 +51,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="plog">
     <meta property="article:published_time" content="2026-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-11-20T00:00:00+00:00">
     <meta property="article:tag" content="All-in-RAG">
     <meta property="article:tag" content="RAG">
     <meta property="article:tag" content="Datawhale">
@@ -59,8 +59,8 @@
   <meta itemprop="name" content="Plog｜All-In-RAG 组队学习历程（连载中）">
   <meta itemprop="description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
   <meta itemprop="datePublished" content="2026-11-15T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-11-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1349">
+  <meta itemprop="dateModified" content="2026-11-20T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1767">
   <meta itemprop="keywords" content="All-in-RAG,RAG,Datawhale">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Plog｜All-In-RAG 组队学习历程（连载中）">
@@ -183,7 +183,7 @@
       </tr>
       <tr>
           <td>当前任务</td>
-          <td><strong>Task 1 · 第 1 章</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter1</a>，截止 2026-11-18 21:00 —— <strong>11-18 已完成</strong>（见第 05 记）；等 Task 2 发布</td>
+          <td><strong>Task 2 · 第 2 章 数据准备</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2</a>，截止 <strong>2026-11-20 24:00</strong>（见第 06–08 记）；Task 1 已于 11-18 完成</td>
       </tr>
       <tr>
           <td>预计周期</td>
@@ -257,6 +257,24 @@
           <td>2026-11-18</td>
           <td>三道练习完成 · Task 1 学完</td>
           <td>已完成</td>
+      </tr>
+      <tr>
+          <td>06</td>
+          <td>2026-11-19</td>
+          <td>2.1 数据加载 · Unstructured 与 PDF 解析策略</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>07</td>
+          <td>2026-11-20</td>
+          <td>2.2 文本分块 · 上下文限制与池化的信息损失</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>08</td>
+          <td>2026-11-20</td>
+          <td>Task 2 任务发布 · 第 2 章截止 11-20 24:00</td>
+          <td>已记录</td>
       </tr>
   </tbody>
 </table>
@@ -646,6 +664,166 @@ openai.APIConnectionError: Connection error.
 <li><code>query_engine.get_prompts()</code> 打出来的提示词模板具体长什么样（这次只调用了，没细看）。</li>
 <li><code>chunk_size</code> / <code>chunk_overlap</code> 怎么调才合适，留到第二章「文本分块」。</li>
 <li>LangChain 和 LlamaIndex 两套写法的适用边界（这次只是各跑一遍）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-06-记2026-11-19--21-数据加载unstructured-与-pdf-解析策略">第 06 记｜2026-11-19 · 2.1 数据加载：Unstructured 与 PDF 解析策略</h3>
+<blockquote>
+<p>依据：本人的学习笔记。开始 Task 2（第 2 章「数据准备」），从文档加载器 Unstructured 入手，跑通了教程示例，并处理了练习里 <code>partition_pdf</code> 的前置依赖。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>文档加载器用了 <strong>Unstructured</strong> —— 教程第 2 章把它从 LangChain 的 <code>UnstructuredMarkdownLoader</code> 封装里拆出来直接用，好处是更灵活、能拿到 PDF 特有的参数。</li>
+<li>跑了教程 <code>code/C2/01_unstructured_example.py</code>：用 <code>unstructured.partition.auto.partition()</code> 解析 PDF，打印元素数量、字符数、元素类型分布和全部元素。</li>
+<li><code>partition()</code> 会自动检测文件类型并路由到专用函数（PDF 就调 <code>partition_pdf</code>）；想更专业地处理 PDF，就直接用专用函数。</li>
+<li>教程练习要求：用 <code>partition_pdf</code> 替换 <code>partition</code>，分别试 <code>hi_res</code> 和 <code>ocr_only</code>，观察输出变化。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 直接用 partition_pdf</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> unstructured.partition.pdf <span style="color:#f92672">import</span> partition_pdf
+</span></span></code></pre></div><p>这一步是练习的前提 —— <code>partition()</code> 是自动路由，要显式指定 PDF 解析器就得按上面这样导入，才能用上 PDF 特有的参数（OCR 语言设置、图像提取、表格结构推理等）。</p>
+<p><strong>② hi_res 要装 tesseract</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Ubuntu / Debian</span>
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install -y tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-eng
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证</span>
+</span></span><span style="display:flex;"><span>tesseract --version
+</span></span><span style="display:flex;"><span>tesseract --list-langs
+</span></span></code></pre></div><p><code>chi-sim</code> 是简体中文包，<code>eng</code> 是英文包 —— 不装对应语言包，OCR 出来就是空或乱码。</p>
+<p><strong>③ hi_res 是什么</strong></p>
+<ul>
+<li><code>hi_res</code> = <strong>high resolution</strong>（高分辨率），是 Unstructured 里 PDF 解析的一种策略。完整可选值：<code>fast</code>、<code>hi_res</code>、<code>ocr_only</code>、<code>auto</code>（教程参数说明里写的是 auto / fast / hi_res 等，练习还要求试 ocr_only）。</li>
+<li>做法：把 PDF 每一页渲染成高分辨率图片 → 用版面检测模型识别标题、正文、表格、图片等元素的位置 → 对图片区域做 OCR 提取文字。</li>
+<li>优点：能处理扫描件、图片型 PDF，对复杂版面（多栏、表格、图文混排）识别效果最好。</li>
+<li>缺点：慢、依赖多（tesseract、版面分析模型等）—— 这就是刚才那个报错的原因。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>大致特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>fast</code></td>
+          <td>快，直接抽文本层，扫描件基本无解</td>
+      </tr>
+      <tr>
+          <td><code>hi_res</code></td>
+          <td>渲染成图 + 版面检测 + OCR，效果最好但慢、依赖多</td>
+      </tr>
+      <tr>
+          <td><code>ocr_only</code></td>
+          <td>全程 OCR，不判断版面结构</td>
+      </tr>
+      <tr>
+          <td><code>auto</code></td>
+          <td>自动判断走哪条路（默认）</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>跑 <code>hi_res</code> 前没装 tesseract 会报错 → 按上面的 apt 命令装 <code>tesseract-ocr</code> + 中英文语言包，<code>tesseract --list-langs</code> 能看到 <code>chi_sim</code> / <code>eng</code> 就算装好。</li>
+<li>教程另提示：若报 <code>ImportError: libgl.so.1 cannot open shared object file</code>，执行 <code>sudo apt-get install python3-opencv</code>。</li>
+<li><code>hi_res</code> 慢是预期行为，不是卡死 —— 它在逐页做版面检测和 OCR。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>hi_res</code> 和 <code>ocr_only</code> 的实际输出差异还没跑出来（练习要求，待做）。</li>
+<li>版面检测模型具体是什么、首次运行会不会自动下载。</li>
+<li>教程提到实际项目中 PDF 处理更多用 PaddleOCR、MinerU，还没看。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-07-记2026-11-20--22-文本分块上下文限制与池化的信息损失">第 07 记｜2026-11-20 · 2.2 文本分块：上下文限制与池化的信息损失</h3>
+<blockquote>
+<p>依据：本人的学习笔记，对应教程 <code>docs/chapter2/05_text_chunking.md</code>。Task 2 继续，从「为什么要分块」切入。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li><strong>文本块大小是有上限的</strong>，不是想切多大就切多大：它同时受限于两个模型 —— 嵌入模型的上下文窗口（比如 <code>bge-base-zh-v1.5</code> 是 512 token，超了会被截断、向量无法完整代表原文）和 LLM 的上下文窗口（检索到的块 + 问题 + prompt 都得塞进去，块太大就只能放少数几个块，参考广度下降）。</li>
+<li><strong>不是越大越好</strong>。嵌入模型最后要把整个文本块压成一个向量，这个压缩过程必然丢信息；块越长，语义点越多，单一向量承载的信息越稀释。</li>
+<li>看了其他框架的分块策略：Unstructured（基于文档元素）、LlamaIndex（结构感知的 Node Parser）、ChunkViz（分块可视化）。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 池化（Pooling）：为什么长块会糊</strong></p>
+<ul>
+<li>做法：通过某种方法（取 <code>[CLS]</code> 位的向量、对所有 token 向量求平均 <code>mean pooling</code> 等），把所有 token 的向量<strong>压缩成一个单一向量</strong>，用它代表整个文本块的语义。</li>
+<li><code>[CLS]</code> 是 BERT 等 Transformer 在输入文本开头加的特殊标记，通过自注意力机制动态聚合整个序列的上下文，最终向量被训练用来代表全局语义。</li>
+<li>关键推论：一个 <strong>768 维</strong>的向量要概括整个文本块的所有信息。文本块越长，语义点越多，这个向量承载的信息就越稀释 —— 表示变得笼统、关键细节被模糊化，<strong>检索精度下降</strong>。</li>
+<li>另一头也有问题：即使把多个大块塞进 LLM 的长上下文，关键信息也会被「淹没」在大量无关内容里；长上下文里模型更容易记住开头和结尾、忽略中间（lost in the middle）。</li>
+</ul>
+<p><strong>② 其他开源框架的分块策略</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>框架</th>
+          <th>做法</th>
+          <th>适用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>4.1 Unstructured</strong></td>
+          <td>基于文档元素的智能分块：先分区出 Title / NarrativeText / Table 等元素，再组合成块；<code>by_title</code> 会把 <code>Title</code> 当新章节起点</td>
+          <td>版式复杂的文档，「先理解、后分割」</td>
+      </tr>
+      <tr>
+          <td><strong>4.2 LlamaIndex</strong></td>
+          <td>节点（Node）解析与转换：结构感知型解析器如 <code>MarkdownNodeParser</code>、<code>JSONNodeParser</code>、<code>CodeSplitter</code>，还有 <code>SentenceWindowNodeParser</code></td>
+          <td><strong>文档里涉及很多 markdown、JSON 或代码时用</strong>（我看到的点）</td>
+      </tr>
+      <tr>
+          <td><strong>4.3 ChunkViz</strong></td>
+          <td>把文档和分块配置作为输入，用不同颜色块展示每个 chunk 的边界和重叠</td>
+          <td>分块后可视化看效果，调参时很直观</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>暂无实操踩坑（这节偏概念）。</li>
+<li>一个容易混的点记一下：<code>chunk_size</code> 只是「目标大小」，实际切块还要看分隔符、段落完整性和重叠（<code>chunk_overlap</code>）；教程示例里出现过注释写 100 但实际参数 200 的笔误，读代码时以参数为准。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>[CLS]</code> / <code>mean pooling</code> 在咱们用的 <code>bge-small-zh-v1.5</code> 里具体用的哪种（教程这节没展开）。</li>
+<li><code>SentenceWindowNodeParser</code> 的「句子嵌入 + 窗口上下文送给 LLM」怎么落地。</li>
+<li>ChunkViz 还没实际打开用，下次调 <code>chunk_size</code> 时可以配合看效果。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-08-记2026-11-20--task-2-任务发布第-2-章数据准备">第 08 记｜2026-11-20 · Task 2 任务发布：第 2 章数据准备</h3>
+<blockquote>
+<p>依据：群公告（Tartine）。Task 2 的学习内容对应教程第 2 章，也就是第 06、07 记的内容。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li><strong>Task 2</strong> 发布：学习链接 <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2</a>，即第 2 章「数据准备」（2.1 数据加载 + 2.2 文本分块）。</li>
+<li>⏰ 截止时间：<strong>2026-11-20 24:00</strong>。</li>
+<li>完成学习有机会获得结营证书、优秀学习者有机会获得实体书奖励。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<ul>
+<li>Task 2 链接：<code>https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2</code></li>
+<li>本 Task 的笔记：第 06 记（Unstructured 与 PDF 解析策略）、第 07 记（文本分块：上下文限制与池化）。</li>
+<li>第 2 章练习（教程原文）：用 <code>partition_pdf</code> 替换 <code>partition</code>，分别试 <code>hi_res</code> 和 <code>ocr_only</code> 解析，观察输出变化 —— 还没做完，留到下次。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>暂无实操踩坑（这是任务公告）。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>hi_res</code> vs <code>ocr_only</code> 的输出对比还没跑。</li>
+<li>ChunkViz 还没实际用。</li>
+<li>Task 3 的内容与截止时间待发。</li>
 </ul>
 <p><strong>一句话</strong></p>
 <ul>

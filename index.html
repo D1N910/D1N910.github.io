@@ -16,7 +16,7 @@
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.7ff9431cb2367d70f9d70f2e599df2263380329516d2f0b40236e19dcd542632.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.91f28d91005ec79dbf2527310356a95cec9120b64d60b1a3a787cdef3efa6d7d.css" >
 
 
 
@@ -157,26 +157,54 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/papers/yolo26/" class="color-inherit dim link">
-            Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models / Ultralytics YOLO26：统一的实时端到端视觉模型
+          <a href="/posts/ai-native-learning-notes/" class="color-inherit dim link">
+            AI native 学习笔记法：把笔记从「存信息」改成「存判断」
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <h1 id="论文阅读笔记">论文阅读笔记</h1>
-<h2 id="论文信息">论文信息</h2>
-<ul>
-<li><strong>标题</strong>：Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models</li>
-<li><strong>作者</strong>：Glenn Jocher、Jing Qiu、Mengyu Liu、Shuai Lyu、Fatih Cagatay Akyon、Muhammet Esat Kalfaoglu（Ultralytics）</li>
-<li><strong>发表时间</strong>：2026 年 6 月（arXiv:2606.03748v1，2026-06-02）</li>
-<li><strong>领域</strong>：cs.CV，实时目标检测与统一视觉模型</li>
-<li><strong>代码</strong>：<a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>（AGPL-3.0）</li>
-<li><strong>DOI</strong>：10.48550/arXiv.2606.03748</li>
-</ul>
-<p>一句话：YOLO26 在 YOLO11 之上，把默认推理路径改成原生端到端、无 NMS 的一对一检测头，同时用双头训练、去 DFL、MuSGD、Progressive Loss 和 STAL 重新平衡精度与部署成本。</p>
-<h2 id="摘要">摘要</h2>
-<p>Real-time vision demands models that are accurate, efficient, and simple to deploy across diverse hardware. The YOLO family has become widely deployed for this reason, yet most YOLO detectors still rely on non-maximum suppression at inference, carry heavy detection heads due to Distribution Focal Loss, require long training schedules, and can leave the smallest objects without positive label assignments. We present Ultralytics YOLO26, a unified real-time vision model family that addresses these limitations through coordinated architecture and training advances. Architecturally, YOLO26 uses a dual-head design for native NMS-free end-to-end inference and removes DFL entirely, yielding a lighter head with unconstrained regression range. For training, three techniques jointly improve accuracy while reducing cost: MuSGD, a hybrid Muon–SGD optimizer adapted from large language model training; Progressive Loss, which shifts supervision toward the inference-time head; and STAL, a label assignment strategy that guarantees positive coverage for small objects. Beyond detection, YOLO26 introduces task-specific head and loss designs for instance segmentation, pose estimation, and oriented detection, producing consistent gains across tasks and scales. The family spans five scales (n/s/m/l/x) and supports detection, instance segmentation, pose estimation, classification, and oriented detection in a single pipeline, with an open-vocabulary extension, YOLOE-26, for text-, visual-, and prompt-free inference. Across all scales, YOLO26 achieves 40.9–57.5 mAP on COCO at 1.7–11.8 ms T4 TensorRT latency, advancing the accuracy–latency Pareto front over prior real-time detectors, while YOLOE-26x reaches 40.6 AP on LVIS minival under text prompting. Code and models are available at <a href="https://github.com/ultralytics/ultralytics">https://github.com/ultralytics/ultralytics</a>.</p>
+          <blockquote>
+<p>这段时间在跟 Datawhale 的 All-In-RAG 组队学习，学到第三章的时候突然想明白一件事：我以前做笔记的方式，在 AI 时代基本废了。这篇就写写我现在怎么学、怎么记、怎么验证自己没白学。</p></blockquote>
+<h2 id="0-先说结论">0. 先说结论</h2>
+<p>我说白了，AI native 时代最值钱的不是「记住」，是「判断」。</p>
+<p>以前笔记的功能是<strong>存信息</strong>——老师讲得好、书里写得妙，赶紧抄下来，怕忘了。现在信息随时能生成，解释也几乎不要钱，你抄的那段话问 AI 三秒就能再来一份，甚至讲得比原文清楚。</p>
+<p>那笔记还有什么用？我的答案是：<strong>存你的判断</strong>。存你哪里卡过、哪里猜错过、哪里跟别人的说法不一样。这些东西 AI 生成不出来，因为那是你脑子里长出来的。</p>
+<p>瓶颈变了：以前是「找不到资料」，现在是「看懂了，但没长进脑子里」。下面这套方法就是冲着后半句去的。</p>
+<h2 id="1-怎么学问题驱动不是章节驱动">1. 怎么学：问题驱动，不是章节驱动</h2>
+<table>
+  <thead>
+      <tr>
+          <th>旧方式</th>
+          <th>我现在的方式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>从第 1 页读到第 100 页</td>
+          <td>先抛 3 个问题，带着问题进章节</td>
+      </tr>
+      <tr>
+          <td>不懂就从头补基础</td>
+          <td>卡哪儿补哪儿，AI 当「按需解释器」</td>
+      </tr>
+      <tr>
+          <td>看完再动手</td>
+          <td>先跑通再理解</td>
+      </tr>
+  </tbody>
+</table>
+<p>我第一章就是这么干的：<code>01_langchain_example.py</code> 先跑起来，报错了就查，查完再回头看 RAG 的概念。比起「先学完理论再实践」，这样记得牢得多——因为你是在解决问题的过程中学的，不是在旁观。</p>
+<p>具体动作：每开一章之前，先问自己三个问题。比如 index 构建那章，我的问题是「chunk 都切好了，凭什么能搜出来？」「embedding 到底干了什么？」「向量数据库和我在项目里用的 Elasticsearch 有啥区别？」带着这些读，笔记自然有主线，不会变成章节摘抄。</p>
+<h2 id="2-笔记只记四样其余让-ai-生成">2. 笔记只记四样，其余让 AI 生成</h2>
+<p><strong>值得记的：</strong></p>
+<ol>
+<li><strong>自己的话</strong>。教程说「池化把 token 向量压缩成单一向量」，我口述时说的是「一个 768 维的向量要概括整个文本块，越长越稀释」。后者才是我的，前者是教程的。</li>
+<li><strong>卡住的点 + 怎么爬出来的</strong>。我跑示例时遇到三个问题：NLTK 资源被 SSRF 拦截、目录权限太松、API 的 SSL 被掐断。这三个比教程正文值钱十倍，因为下次再踩我能直接翻自己的笔记。</li>
+<li><strong>没搞懂 / 我猜的</strong>。学 RAG 简介时我标过「FT 是 finetune 吗」「KB 我猜是类」。后来核实，FT 真是微调，KB 是 Knowledge Base、我猜的「类」其实是它下一层。这种诚实标记是笔记的灵魂——糊过去就假了。</li>
+<li><strong>能直接跑的代码 / 命令</strong>。<code>chmod go-w</code>、<code>from unstructured.partition.pdf import partition_pdf</code>，未来我会原样复制。</li>
+</ol>
+<p><strong>别记的：</strong> 教程原文搬运、AI 的回答原样粘贴、我已经懂的定义。这些随时能再生成，抄一遍只会制造「我学了」的错觉。</p>
         </div>
-        <a href="/papers/yolo26/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        <a href="/posts/ai-native-learning-notes/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
       </div>
     </div>
   </div>
@@ -192,23 +220,231 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/papers/bpo/" class="color-inherit dim link">
-            Black-Box Prompt Optimization: Aligning Large Language Models without Model Training / 黑盒提示词优化：无需模型训练的对大语言模型的黑盒提示词优化
+          <a href="/posts/course-learning-plog/" class="color-inherit dim link">
+            Plog｜All-In-RAG 组队学习历程（连载中）
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <h1 id="论文阅读笔记">论文阅读笔记</h1>
-<h2 id="论文信息">论文信息</h2>
-<ul>
-<li><strong>标题</strong>: Black-Box Prompt Optimization: Aligning Large Language Models  without Model Training</li>
-<li><strong>作者</strong>: Jiale Cheng1,2* , Xiao Liu3,2* , Kehan Zheng1 , Pei Ke1 ,  Hongning Wang1 , Yuxiao Dong3 , Jie Tang3 , Minlie Huang1†</li>
-<li><strong>发表时间</strong>: 2024年8月</li>
-<li><strong>期刊/会议</strong>: ACL 2024 长论文</li>
-</ul>
-<h2 id="摘要">摘要</h2>
-<p>Large language models (LLMs) have shown impressive success in various applications. However, these models are often not well aligned  with human intents, which calls for additional  treatments on them; that is, the alignment  problem. To make LLMs better follow user  instructions, existing alignment methods primarily focus on further training them. However, the extra training of LLMs is usually  expensive in terms of GPU computing; even  worse, some LLMs are not accessible for userdemanded training, such as GPTs. In this work,  we take a different perspective—Black-Box  Prompt Optimization (BPO)—to perform alignments. The idea is to optimize user prompts to  suit LLMs’ input understanding, so as to best  realize users’ intents without updating LLMs’  parameters. BPO leverages human preferences  to optimize prompts, thus making it superior  to LLM (e.g., ChatGPT) as a prompt engineer. Moreover, BPO is model-agnostic, and  the empirical results demonstrate that the BPOaligned ChatGPT yields a 22% increase in the  win rate against its original version and 10%  for GPT-4. Notably, the BPO-aligned LLMs  can outperform the same models aligned by  PPO and DPO, and it also brings additional  performance gains when combining BPO with  PPO or DPO. Code and datasets are released at  <a href="https://github.com/thu-coai/BPO">https://github.com/thu-coai/BPO</a>.</p>
+          <blockquote>
+<p>连载中。每学完一节就往后面追加一记，课程结束后统一整理再发布。
+起始：2026-11-15 · 记录人：蛋糕 · 本期：All-In-RAG | 202611</p></blockquote>
+<h2 id="0-课程信息">0. 课程信息</h2>
+<table>
+  <thead>
+      <tr>
+          <th>项</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>课程名称</td>
+          <td>All-In-RAG（Datawhale 组队学习 · 202611 期）</td>
+      </tr>
+      <tr>
+          <td>来源 / 平台</td>
+          <td>教程仓库 <a href="https://github.com/datawhalechina/all-in-rag">https://github.com/datawhalechina/all-in-rag</a>；组织与打卡在微信群「All-In-RAG | 202611」</td>
+      </tr>
+      <tr>
+          <td>开始日期</td>
+          <td>2026-11-16（公告说「正式学习从下周开始」「打卡从下周一开始逐步开放」）</td>
+      </tr>
+      <tr>
+          <td>任务结构</td>
+          <td>共 <strong>Task 1–8</strong>，对应教程<strong>八章必修 + 两章选修实战</strong>；每章安排 <strong>2–3 天</strong>（Tartine 2026-11-16 16:04）</td>
+      </tr>
+      <tr>
+          <td>当前任务</td>
+          <td><strong>Task 2 · 第 2 章 数据准备</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2</a>，截止 <strong>2026-11-20 24:00</strong>（见第 06–08 记）；Task 1 已于 11-18 完成</td>
+      </tr>
+      <tr>
+          <td>预计周期</td>
+          <td>按每章 2–3 天推进；后续各 Task 的截止时间由助教逐个发布（待补）</td>
+      </tr>
+      <tr>
+          <td>想拿到的结果</td>
+          <td>待补</td>
+      </tr>
+      <tr>
+          <td>运营助教</td>
+          <td>Tartine（Datawhale 本期助教，组队学习流程问题可在群内问）</td>
+      </tr>
+      <tr>
+          <td>打卡形式</td>
+          <td>完成 Task 后在<strong>群里打卡接龙</strong>；打卡表（飞书，需登录）：<a href="https://magicyang.feishu.cn/share/base/shrcnrMFdVcimGmPP5gBeyuMJod">https://magicyang.feishu.cn/share/base/shrcnrMFdVcimGmPP5gBeyuMJod</a>；官方会安排答疑时间</td>
+      </tr>
+      <tr>
+          <td>学习资料</td>
+          <td>目前<strong>没有 PDF</strong>，完整内容都在 GitHub 教程链接里（Tartine 2026-11-16 16:02）</td>
+      </tr>
+      <tr>
+          <td>结营激励</td>
+          <td>完成学习有机会获<strong>结营证书</strong>，优秀学习者有机会获<strong>实体书奖励</strong></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="1-进度总览">1. 进度总览</h2>
+<table>
+  <thead>
+      <tr>
+          <th>记</th>
+          <th>日期</th>
+          <th>主题</th>
+          <th>状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>00</td>
+          <td>2026-11-15</td>
+          <td>开营通知 / 课程信息登记（群公告发布于 11-13）</td>
+          <td>已记录</td>
+      </tr>
+      <tr>
+          <td>01</td>
+          <td>2026-11-15</td>
+          <td>任务列表待发 · 预习启动（开营前夜）</td>
+          <td>计划中 · 结果待补</td>
+      </tr>
+      <tr>
+          <td>02</td>
+          <td>2026-11-16</td>
+          <td>任务列表发布 · Task 1 开始</td>
+          <td>进行中</td>
+      </tr>
+      <tr>
+          <td>03</td>
+          <td>2026-11-16</td>
+          <td>1.1 RAG 简介 · 口述 vlog 笔记</td>
+          <td>已整理</td>
+      </tr>
+      <tr>
+          <td>04</td>
+          <td>2026-11-18</td>
+          <td>四步构建 RAG · 跑通示例与三个环境问题</td>
+          <td>已解决</td>
+      </tr>
+      <tr>
+          <td>05</td>
+          <td>2026-11-18</td>
+          <td>三道练习完成 · Task 1 学完</td>
+          <td>已完成</td>
+      </tr>
+      <tr>
+          <td>06</td>
+          <td>2026-11-19</td>
+          <td>2.1 数据加载 · Unstructured 与 PDF 解析策略</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>07</td>
+          <td>2026-11-20</td>
+          <td>2.2 文本分块 · 上下文限制与池化的信息损失</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>08</td>
+          <td>2026-11-20</td>
+          <td>Task 2 任务发布 · 第 2 章截止 11-20 24:00</td>
+          <td>已记录</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>追加新记录时，同步更新这张表。</p>
         </div>
-        <a href="/papers/bpo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        <a href="/posts/course-learning-plog/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/mediapipe-temporal-model/" class="color-inherit dim link">
+            MediaPipe &#43; 轻量时序模型：动作识别流水线笔记
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <blockquote>
+<p>这是一篇额外笔记，记录 TFLite、MediaPipe 和轻量时序模型的概念，以及一种可落地的动作识别流水线。与 YOLO26 论文笔记分开，方便以后做健身动作识别项目时直接查。</p></blockquote>
+<h2 id="1-tflite-推理图cnnmediapipe-图的关系">1. TFLite 推理图、CNN、MediaPipe 图的关系</h2>
+<p>三者不是同一层概念，不能直接二选一。</p>
+<table>
+  <thead>
+      <tr>
+          <th>概念</th>
+          <th>是什么</th>
+          <th>关注点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CNN</td>
+          <td>模型架构：卷积层、池化、激活、残差怎么连</td>
+          <td>表达能力、精度</td>
+      </tr>
+      <tr>
+          <td>TFLite 推理图</td>
+          <td>部署产物：转成 <code>.tflite</code> 后的可执行计算图</td>
+          <td>延迟、内存、算子兼容、量化、GPU/NPU 委托</td>
+      </tr>
+      <tr>
+          <td>MediaPipe 图</td>
+          <td>流水线编排：预处理 → TFLite 推理 → 后处理</td>
+          <td>整条链路的连接、同步、输入输出</td>
+      </tr>
+  </tbody>
+</table>
+<p>层次关系：</p>
+<pre tabindex="0"><code>CNN（模型架构）
+  → TFLite 图（单个模型的可执行图）
+  → MediaPipe 图（整条推理流水线，可能包含多个 TFLite 模型）
+</code></pre><ul>
+<li><strong>CNN 是菜谱</strong>：描述用什么层、怎么算。</li>
+<li><strong>TFLite 图是打包好的料理包 + 厨房适配说明</strong>：描述在手机上按什么顺序执行哪些算子、张量多大、权重在哪、是否量化。</li>
+<li><strong>MediaPipe 图是整条厨房流水线</strong>：备菜、加热、装盘怎么衔接。</li>
+</ul>
+<p>TFLite 图可以装 CNN，也可以装 LSTM、Transformer；CNN 也可以导出成 TFLite 图。所以“TFLite 推理图 vs CNN”不是对立关系，而是部署形态与模型架构的关系。</p>
+<h2 id="2-两段式动作识别流水线">2. 两段式动作识别流水线</h2>
+<pre tabindex="0"><code>视频帧
+→ MediaPipe Pose（每帧检测 33 个关键点）
+→ 关键点序列（T×33×4：x, y, z, visibility）
+→ 下游时序模型（LSTM / GRU / 1D-CNN / TCN / Transformer）
+→ 动作、相位、错误标签
+→ 规则映射成指导文案
+</code></pre><ul>
+<li><strong>保留 MediaPipe 做推理</strong>：不自己训练姿态模型，继续用 MediaPipe 的预训练姿态模型提取每帧关键点。它内部也是 CNN + TFLite，可以当黑盒用。</li>
+<li><strong>下游时序模型</strong>：在关键点序列上单独训练一个模型，学习动作随时间的变化。MediaPipe 负责“关节在哪”，时序模型负责“你在做什么动作”。</li>
+<li><strong>“下游”</strong>：MediaPipe 是上游特征提取器，时序模型是下游任务模型。</li>
+</ul>
+<h3 id="为什么这么设计">为什么这么设计</h3>
+<ul>
+<li>复用成熟的姿态模型，省数据、省训练成本；</li>
+<li>关键点维度低，时序模型可以很小，端侧跑得动；</li>
+<li>模块化：姿态模型和动作模型可以分别替换、分别调试；</li>
+<li>隐私友好：关键点可以在本地处理，不必上传视频。</li>
+</ul>
+<h3 id="代价">代价</h3>
+<ul>
+<li><strong>误差传播</strong>：MediaPipe 关键点错了，下游模型跟着错；</li>
+<li><strong>丢失外观信息</strong>：只看骨架，器械、物体交互看不到；</li>
+<li><strong>两段式延迟</strong>和集成复杂度；</li>
+<li>需要标注动作片段，窗口大小、步长、平滑策略都要调；</li>
+<li>遮挡、健身房器械、特殊机位可能让 MediaPipe 失效。</li>
+</ul>
+<h2 id="3-轻量时序模型是什么">3. 轻量时序模型是什么</h2>
+<p>它不是只看单帧，而是输入一段时间的特征序列，基于整段序列做判断。</p>
+        </div>
+        <a href="/posts/mediapipe-temporal-model/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
       </div>
     </div>
   </div>
@@ -218,6 +454,18 @@
         
       </section>
 
+      
+        <section class="w-100">
+          <h1 class="f3">More</h1>
+          
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/my-first-post/" class="link black dim">
+                关于我
+              </a>
+            </h2>
+          
+        </section>
       
 
     </div>

@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.d1n910.com/posts/ai-native-learning-notes/</loc>
+    <lastmod>2026-11-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/</loc>
+    <lastmod>2026-11-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.d1n910.com/posts/</loc>
+    <lastmod>2026-11-20T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.d1n910.com/tags/all-in-rag/</loc>
     <lastmod>2026-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.d1n910.com/categories/</loc>
-    <lastmod>2026-11-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.d1n910.com/</loc>
     <lastmod>2026-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.d1n910.com/tags/datawhale/</loc>
@@ -30,9 +36,6 @@
     <lastmod>2026-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.d1n910.com/posts/mediapipe-temporal-model/</loc>
-    <lastmod>2026-10-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.d1n910.com/posts/</loc>
     <lastmod>2026-10-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.d1n910.com/papers/</loc>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-11-23T00:00:00+00:00">
     <meta property="article:tag" content="All-in-RAG">
     <meta property="article:tag" content="RAG">
     <meta property="article:tag" content="Datawhale">
@@ -59,8 +59,8 @@
   <meta itemprop="name" content="Plog｜All-In-RAG 组队学习历程（连载中）">
   <meta itemprop="description" content="Datawhale All-In-RAG（202611 期）组队学习连载：从开营通知到每节笔记打卡，记下学了什么、踩了什么坑、想明白了什么。">
   <meta itemprop="datePublished" content="2026-11-15T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-11-20T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1769">
+  <meta itemprop="dateModified" content="2026-11-23T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3317">
   <meta itemprop="keywords" content="All-in-RAG,RAG,Datawhale">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Plog｜All-In-RAG 组队学习历程（连载中）">
@@ -179,15 +179,15 @@
       </tr>
       <tr>
           <td>任务结构</td>
-          <td>共 <strong>Task 1–8</strong>，对应教程<strong>八章必修 + 两章选修实战</strong>；每章安排 <strong>2–3 天</strong>（Tartine 2026-11-16 16:04）</td>
+          <td>共 <strong>Task 1–8</strong>，对应教程<strong>八章必修</strong>；每章 2 天（完整时间表见第 09 记）</td>
       </tr>
       <tr>
           <td>当前任务</td>
-          <td><strong>Task 2 · 第 2 章 数据准备</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter2</a>，截止 <strong>2026-11-20 24:00</strong>（见第 06–08 记）；Task 1 已于 11-18 完成</td>
+          <td><strong>Task 3 · 第 3 章 索引构建</strong> <a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter3">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter3</a>，截止 <strong>2026-11-22 24:00</strong>（见第 09 记）；Task 1、2 已过截止</td>
       </tr>
       <tr>
           <td>预计周期</td>
-          <td>按每章 2–3 天推进；后续各 Task 的截止时间由助教逐个发布（待补）</td>
+          <td><strong>11-17 正式开始，共 16 天</strong>，每个 Task 2 天，到 12-02 结束（完整时间表见第 09 记）</td>
       </tr>
       <tr>
           <td>想拿到的结果</td>
@@ -275,6 +275,48 @@
           <td>2026-11-20</td>
           <td>Task 2 任务发布 · 第 2 章截止 11-20 24:00</td>
           <td>已记录</td>
+      </tr>
+      <tr>
+          <td>09</td>
+          <td>2026-11-21</td>
+          <td>完整任务时间表 · 进入 Task 3 索引构建</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>2026-11-21</td>
+          <td>3.1 向量嵌入 · 嵌入模型与 MTEB 选型</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>2026-11-22</td>
+          <td>3.2 多模态嵌入 · 矩阵乘法与向量库练习</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td>2026-11-23</td>
+          <td>Milvus 环境权限坑 · 召回率与评估指标</td>
+          <td>学习中</td>
+      </tr>
+      <tr>
+          <td>13</td>
+          <td>2026-11-23</td>
+          <td>Milvus 向量索引结构分析（截图笔记）</td>
+          <td>已记录</td>
+      </tr>
+      <tr>
+          <td>14</td>
+          <td>2026-11-23</td>
+          <td>代码答疑合集：IVF / HNSW / 图像拼图与通道</td>
+          <td>已记录</td>
+      </tr>
+      <tr>
+          <td>15</td>
+          <td>2026-11-23</td>
+          <td>3.5 索引优化 · 上下文扩展与结构化索引（了解）</td>
+          <td>已了解</td>
       </tr>
   </tbody>
 </table>
@@ -830,6 +872,617 @@ openai.APIConnectionError: Connection error.
 <ul>
 <li>待补（留给你自己写）</li>
 </ul>
+<h3 id="第-09-记2026-11-21--完整任务时间表进入-task-3-索引构建">第 09 记｜2026-11-21 · 完整任务时间表，进入 Task 3 索引构建</h3>
+<blockquote>
+<p>依据：群里发的「任务信息」时间表截图。之前只有逐条发布的 Task 1、Task 2 截止时间，这次拿到完整排期。当前进入 <strong>Task 3 · 索引构建</strong>。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>本期学习<strong>从 11 月 17 日正式开始，共 16 天</strong>，Task 1–8 每个 <strong>2 天</strong>，到 <strong>12 月 02 日</strong>结束。</li>
+<li>现在在 <strong>Task 3 · 索引构建</strong>（教程第 3 章），截止 <strong>11 月 22 日 24:00</strong>。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p>完整时间表（照截图整理）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>任务信息</th>
+          <th>天数</th>
+          <th>截止时间</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>11 月 17 日正式开始</td>
+          <td>共 16 天</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>Task 01：解锁 RAG</td>
+          <td>2 天</td>
+          <td>11 月 18 日 24:00</td>
+      </tr>
+      <tr>
+          <td>Task 02：数据准备</td>
+          <td>2 天</td>
+          <td>11 月 20 日 24:00</td>
+      </tr>
+      <tr>
+          <td><strong>Task 03：索引构建</strong></td>
+          <td>2 天</td>
+          <td><strong>11 月 22 日 24:00</strong></td>
+      </tr>
+      <tr>
+          <td>Task 04：检索优化</td>
+          <td>2 天</td>
+          <td>11 月 24 日 24:00</td>
+      </tr>
+      <tr>
+          <td>Task 05：生成集成</td>
+          <td>2 天</td>
+          <td>11 月 26 日 24:00</td>
+      </tr>
+      <tr>
+          <td>Task 06：RAG 系统评估</td>
+          <td>2 天</td>
+          <td>11 月 28 日 24:00</td>
+      </tr>
+      <tr>
+          <td>Task 07：高级 RAG 架构（拓展部分）</td>
+          <td>2 天</td>
+          <td>11 月 30 日 24:00</td>
+      </tr>
+      <tr>
+          <td>Task 08：项目实战一</td>
+          <td>2 天</td>
+          <td>12 月 02 日 24:00</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>Task 3 学习链接：<a href="https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter3">https://github.com/datawhalechina/all-in-rag/tree/main/docs/chapter3</a>（向量嵌入 / 多模态嵌入 / 向量数据库 / Milvus 实践 / 索引优化）。</li>
+<li>对照第 01 记的章节地图：这张表的 Task 1–8 对应教程第 1–8 章；第 9、10 章是选修实战，不在必修 8 个 Task 里。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>时间口径有两处不一致，<strong>不回改历史记，在这里标注</strong>：
+<ul>
+<li>开始日期：第 00、01 记按 11-13 公告写「正式学习从下周开始」，推算是 11-16；这张表明确写 <strong>11-17 正式开始</strong>。</li>
+<li>Task 1 截止：第 02 记按 11-16 15:52 群公告写 <strong>11-18 21:00</strong>；这张表写 <strong>11-18 24:00</strong>。</li>
+<li>处理：以各自来源为准保留，后续按这张完整表推进。</li>
+</ul>
+</li>
+<li>Task 2 的练习（<code>hi_res</code> vs <code>ocr_only</code> 对比、ChunkViz）还没做完，此时已进 Task 3，先记着，后面有空补。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>任务表里没列第 9、10 章的选修实战，是否另行安排待确认。</li>
+<li>这张表与逐条群公告的截止差异，助教没解释，先按表走。</li>
+<li>Task 3 的具体学习内容还没开始记（向量嵌入、向量数据库、Milvus）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-10-记2026-11-21--31-向量嵌入嵌入模型与-mteb-选型">第 10 记｜2026-11-21 · 3.1 向量嵌入：嵌入模型与 MTEB 选型</h3>
+<blockquote>
+<p>依据：本人的学习笔记（教程 <code>docs/chapter3/06_vector_embedding.md</code>，3516 字 / 9 分钟阅读统计）。Task 3 第一节，从「文本怎么变成向量」开始。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li><strong>文本转向量是靠嵌入模型（Embedding Model）完成的</strong> —— 这是索引构建的起点：第 2 章切好的文本块，要在这里变成向量才能存进向量库、做相似度检索。</li>
+<li>嵌入模型里出名的是 <strong>BERT</strong>（2018 年，用 Transformer 编码器 + 掩码语言模型预训练，生成深度上下文相关的嵌入；同一个词在不同语境会生成不同向量，解决了静态嵌入的一词多义问题）。</li>
+<li>怎么选模型：<strong>看 MTEB 榜单</strong> <a href="https://huggingface.co/spaces/mteb/leaderboard">https://huggingface.co/spaces/mteb/leaderboard</a>（Massive Text Embedding Benchmark，Hugging Face 维护的评测基准，涵盖分类、聚类、检索、排序等任务）。</li>
+<li>选型核心是<strong>跟自己的任务相关</strong>：做 RAG 就重点看 <code>Retrieval</code>（检索）那一列的排名，别被总分带跑。</li>
+<li>另外还看：<strong>模型大小、性能、厂牌</strong>（发布机构）。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 选型四要点（我的原话整理）</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>怎么看</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>任务相关性</td>
+          <td>做 RAG 看 <strong>Retrieval</strong> 排名，不是看综合分</td>
+      </tr>
+      <tr>
+          <td>模型大小</td>
+          <td>越大通常性能越好，但显存要求高、推理慢，按部署环境权衡</td>
+      </tr>
+      <tr>
+          <td>性能</td>
+          <td>榜单得分 + 自己场景下的实际表现</td>
+      </tr>
+      <tr>
+          <td>厂牌</td>
+          <td>发布机构的声誉，知名机构质量更有保障</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>② 教程补充的维度（我只记了上面四个，这些回头看）</strong></p>
+<ul>
+<li><strong>语言</strong>：中文 RAG 要选明确支持中文或多语言的模型（比如咱们一直在用的 <code>BAAI/bge-small-zh-v1.5</code>）。</li>
+<li><strong>维度（Dimensions）</strong>：越高编码信息越丰富，但占存储和算力。</li>
+<li><strong>最大 Token 数</strong>：决定能处理的文本长度上限 —— 这正好接上第 07 记的「块大小不能超过嵌入模型上下文窗口」。</li>
+<li><strong>成本</strong>：API 调用费 or 自部署的硬件与运维成本。</li>
+<li>教程特别提醒：<strong>别只依赖公开榜单做最终决定</strong>，榜单是通用数据集，要建自己的私有评测集迭代测试。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>暂无实操踩坑（这节偏原理与选型）。</li>
+<li>一个认知点：之前第 07 记说「块大小受限于嵌入模型上下文」，这节给了具体参数名 —— <code>Max Tokens</code>，选型时就要一起看，不是切完块才发现超了。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>BERT 的 MLM / NSP 训练细节（教程这节讲了，还没细啃）。</li>
+<li>私有评测集具体怎么建（教程 4.3 提到，没展开）。</li>
+<li>MTEB 榜单上 <code>Retrieval</code> 那一列具体谁排前面，还没去查。</li>
+<li>混合检索相关的 <code>BGE-M3</code> 是什么（教程提了一句）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-11-记2026-11-22--32-多模态嵌入矩阵乘法与向量库练习">第 11 记｜2026-11-22 · 3.2 多模态嵌入：矩阵乘法与向量库练习</h3>
+<blockquote>
+<p>依据：本人的学习笔记。Task 3 进行中，看多模态嵌入时遇到一个公式，顺手把 <code>@</code> 搞清楚了；后面两个练习也做完了。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>多模态嵌入里算相似度的一个公式：<code>sim_1 = img_emb_1 @ img_emb_2.T</code>。</li>
+<li>搞清楚 <code>@</code> 是<strong>矩阵乘法</strong>（Python 里的矩阵乘运算符），<code>.T</code> 是转置 —— 一个 <code>(1×d)</code> 的向量乘另一个的转置，出来就是相似度标量。</li>
+<li>做了三组练习：① 替换 logo 文本看相似度变化；② 跑 <code>03_llamaindex_vector.py</code> 看 LlamaIndex 存的 JSON；③ 新建代码文件实现 LlamaIndex 存储数据的加载 + 相似性搜索。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 那个公式</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sim_1 <span style="color:#f92672">=</span> img_emb_1 <span style="color:#f92672">@</span> img_emb_2<span style="color:#f92672">.</span>T   <span style="color:#75715e"># @ = 矩阵乘法，.T = 转置</span>
+</span></span></code></pre></div><p>教程里同组还有 <code>sim_2 = img_emb_1 @ multi_emb_1.T</code>、<code>sim_3 = text_emb @ multi_emb_1.T</code>、<code>sim_4 = multi_emb_1 @ multi_emb_2.T</code> —— 都是在算「图像 / 文本 / 多模态向量」两两之间的相似度。</p>
+<p><strong>② 练习一：把 datawhale logo 换成 blue whale</strong>
+换了之后的输出：</p>
+<table>
+  <thead>
+      <tr>
+          <th>对比</th>
+          <th>相似度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>图文结合 1 vs 纯文本</td>
+          <td><code>tensor([[0.7572]])</code></td>
+      </tr>
+      <tr>
+          <td>图文结合 1 vs 图文结合 2</td>
+          <td><code>tensor([[0.6897]])</code></td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>教程练习原文：把 <code>datawhale 开源组织的 logo</code> 替换为 <code>blue whale</code>，看结果有什么不同。（结果先记数，为什么这样留到后面再想。）</p></blockquote>
+<p><strong>③ 练习二 &amp; 三：LlamaIndex 存储</strong></p>
+<ul>
+<li>LlamaIndex 默认把数据存储成<strong>透明可读的 JSON 格式</strong>，跑 <code>code/C3/03_llamaindex_vector.py</code> 能看到存了什么。</li>
+<li>新建了一个代码文件，实现对该存储数据的<strong>加载 + 相似性搜索</strong> —— 已完成。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>卡点：<code>@</code> 不认识，以为是什么新语法 → 查了才知道是矩阵乘法运算符（等价于 <code>np.matmul</code>），<code>.T</code> 是转置。这不是 RAG 专属知识，是 Python/线代基础，补上就通了。</li>
+</ul>
+<p><strong>关于「代码要不要背」（我自己的疑问 + 想明白的部分）</strong></p>
+<ul>
+<li>疑问：这些代码是不是要背下来？像之前学前端那样，我其实背过，最后是在项目里反复用才真记住。</li>
+<li>我现在的想法：<strong>背不是目的，能「认得出零件 + 拼得出来」才是</strong>。前端那段经验已经给了答案 —— 真正记住靠的是「在项目里多次使用」，不是背诵本身。</li>
+<li>所以这套代码我按第 10 记那篇《AI native 学习笔记法》的思路处理：不抄整段，只记<strong>关键零件</strong>（<code>partition_pdf</code>、<code>@</code> 是矩阵乘、<code>chunk_size</code>、<code>load + search</code> 这个流程），剩下的用的时候查、改多了自然记住。要验证有没有真会，用「三道闸门」：能不能讲出来、改个参数能不能预测结果、能不能迁到别的场景。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>0.7572</code> 和 <code>0.6897</code> 两个数字为什么是这组关系（换文本后相似度怎么变的、说明什么）—— 结果记了，解释还没想透。</li>
+<li><code>@</code> 背后的线性代数（点积 / 余弦相似度到底怎么对应）。</li>
+<li>教程练习二的 JSON 文件具体长什么样（这次看了，没细记结构）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-12-记2026-11-23--milvus-环境权限坑与召回率">第 12 记｜2026-11-23 · Milvus 环境权限坑与召回率</h3>
+<blockquote>
+<p>依据：Task 3 实践中的两个卡点 —— Milvus 的 Docker 权限报错，以及「召回率怎么算」的答疑。都归到 Task 3（索引构建）这一阶段。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>两个环境的权限问题：<code>wget -O</code> 报 <code>Permission denied</code>（目录写权限），<code>docker compose up -d</code> 报 <code>docker.sock permission denied</code>（Docker 守护进程权限）。都跟 Milvus 版本无关。</li>
+<li><strong>召回率（Recall）</strong>：衡量「该找回来的，找回来了多少」，是评估检索好坏的核心指标。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 权限问题的两个坑</strong></p>
+<ul>
+<li>
+<p><code>wget ... -O docker-compose.yml</code> 报 <code>Permission denied</code>：是<strong>写权限</strong>被拒（不是网络问题），当前用户 <code>ubuntu</code> 不能往 <code>/workspace</code> 写文件。解决：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R ubuntu:ubuntu /workspace
+</span></span></code></pre></div><p><code>chown</code> = change owner，<code>-R</code> = 递归（目录 + 里面所有文件子目录全部生效），<code>ubuntu:ubuntu</code> = 所有者改 ubuntu、所属组改 ubuntu。</p>
+</li>
+<li>
+<p><code>sudo docker compose up -d</code> 报 <code>dial unix /var/run/docker.sock: connect: permission denied</code>：<code>ubuntu</code> 不在 <code>docker</code> 组，连不上 Docker 守护进程。两条路：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker compose up -d                    <span style="color:#75715e"># 临时：每次加 sudo（我选这个）</span>
+</span></span><span style="display:flex;"><span>sudo usermod -aG docker $USER; newgrp docker <span style="color:#75715e"># 一劳永逸：加组并立即生效</span>
+</span></span></code></pre></div><blockquote>
+<p>那条 <code>version is obsolete</code> 只是警告，compose 里的 <code>version:</code> 字段过时会被忽略，不影响运行，删掉更清爽。</p></blockquote>
+</li>
+<li>
+<p>后续所有 docker 命令都要带 <code>sudo</code>（<code>ps</code> / <code>logs</code> / <code>down</code>）；容器 Up 不等于 Milvus 可用，验证：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;from pymilvus import connections; connections.connect(host=&#39;127.0.0.1&#39;, port=&#39;19530&#39;); print(&#39;Milvus OK&#39;)&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>注意仓库 <code>code/</code> 下本来就有一份 <code>docker-compose.yml</code>（etcd + minio + milvus 三件套），别和新下载的那份搞混。</p>
+</li>
+</ul>
+<p><strong>② 召回率怎么算</strong></p>
+<pre tabindex="0"><code>召回率 = TP / (TP + FN)
+</code></pre><table>
+  <thead>
+      <tr>
+          <th>记号</th>
+          <th>全称</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>TP</strong></td>
+          <td>True Positive</td>
+          <td>相关，也召回了</td>
+      </tr>
+      <tr>
+          <td><strong>FN</strong></td>
+          <td>False Negative</td>
+          <td>相关，但<strong>漏掉了</strong></td>
+      </tr>
+      <tr>
+          <td><strong>FP</strong></td>
+          <td>False Positive</td>
+          <td>不相关，却召回了</td>
+      </tr>
+      <tr>
+          <td>TN</td>
+          <td>True Negative</td>
+          <td>不相关，也没召回（不算进召回率）</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>分母 <code>TP + FN</code> = <strong>所有真正相关的文档</strong>，分子 = 找回来的相关文档。例：10 个相关、找回 4 个 → 40%。</li>
+<li><strong>分母需要「标准答案」</strong>：要先人工标注每个问题相关的块（ground truth），才能算。</li>
+<li>常见写法 <strong>Recall@k</strong>（k = 返回的 top-k 数量）：k 越大召回越高，但会带回更多无关内容。</li>
+<li>与精确率（Precision = <code>TP / (TP + FP)</code>）取舍：调大 k → 召回升、精确降；加 rerank → 精确升。RAG 里一般先追高召回（相关内容没进上下文，LLM 再强也答不出），再靠重排提精确 —— 接上第 03 记里 Advanced RAG 的「检索后重排」。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>两个权限坑已解决（见①）；都跟 Milvus 版本号无关 —— 报错里出现镜像名容易误判成版本问题，其实要看真正的错误行。</li>
+<li>召回率的概念坑：一开始容易把它和精确率混，记住「召回看漏没漏（分母是所有相关的），精确看滥没滥（分母是找回来的）」。</li>
+<li><strong>⚠️ 跑 Milvus 示例前必须先起 Docker 服务</strong>（这条最重要，2026-11-23 又踩了一次）：
+<ul>
+<li>现象：跑 <code>04_multi_milvus_cake.py</code> 报 <code>MilvusException: Fail connecting to server on localhost:19530, illegal connection params or server unavailable</code>。</li>
+<li>根因：<strong>Docker 里的 Milvus 容器没在运行</strong> —— 不是代码逻辑错，也不是 Milvus 版本问题。<code>MilvusClient</code> 只是客户端，真正的服务在 Docker 容器里，容器没起就连不上 19530。</li>
+<li>解决（每次开新环境都要做）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /workspace/code/C3           <span style="color:#75715e"># docker-compose.yml 所在目录</span>
+</span></span><span style="display:flex;"><span>sudo docker compose up -d       <span style="color:#75715e"># 起 etcd + minio + milvus 三个容器，注意带 sudo</span>
+</span></span><span style="display:flex;"><span>sudo docker compose ps          <span style="color:#75715e"># 确认三个都 Up、standalone 健康，等 1-2 分钟</span>
+</span></span></code></pre></div></li>
+<li><strong>牢记顺序：先 <code>docker compose up -d</code> 起服务 → 再跑 Python 示例</strong>。换新的 Cloud Studio 环境、容器被关掉、重启之后都要重新起。</li>
+<li>两个检查点：① URI 要带 <code>http://</code> 前缀（<code>MILVUS_URI = &quot;http://localhost:19530&quot;</code>，教程原文写法）；② 容器 Up 不等于能连，用 <code>MilvusClient(uri=...).list_collections()</code> 验证。</li>
+<li>顺带记：<code>04_multi_milvus.py</code> 第 16 行的 URI 是 <code>http://localhost:19530</code>；之前查看色值时也发现教程里查询框是蓝色 <code>(255,0,0)</code>、检索图序号是红色 <code>(0,0,255)</code>，一红一蓝。</li>
+</ul>
+</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>usermod -aG docker</code> 那条路没走（用的 sudo），加组后的效果以后有环境再说。</li>
+<li>召回率的实操计算（标注 ground truth → 跑检索 → 代入公式）要等第 6 章评估那块练。</li>
+<li>容器重启后 Collection 数据是否会丢（脚本每次会 drop 重建，但手动建的数据没验证过）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-13-记2026-11-23--milvus-向量索引的结构分析截图笔记">第 13 记｜2026-11-23 · Milvus 向量索引的结构分析（截图笔记）</h3>
+<blockquote>
+<p>依据：教程截图（Milvus 索引结构与工作原理），对应 <code>docs/chapter3/09_milvus.md</code> 第 3.2 节原图。这一记把图里的信息落成文字。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li><strong>向量索引 = 数据结构 + 量化（可选）+ 精炼器（可选）</strong>。</li>
+<li>索引由以下几部分组成：<strong>数据如何组织、应用到的数据集，以及如何优化搜索结果以保持召回率</strong>。</li>
+<li>索引在向量搜索中的作用：Milvus 索引让向量搜索在<strong>效率与准确性之间取得平衡</strong>。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 索引的三个组件</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>组件</th>
+          <th>作用</th>
+          <th>是否可选</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据结构</td>
+          <td>索引骨架，定义向量怎么组织（如 HNSW 的图结构）</td>
+          <td>必需</td>
+      </tr>
+      <tr>
+          <td>量化</td>
+          <td>数据压缩，降低向量精度 → 省内存、加速计算</td>
+          <td>可选</td>
+      </tr>
+      <tr>
+          <td>精炼器（结果精炼）</td>
+          <td>找到初步候选集后再做更精确计算，优化最终结果</td>
+          <td>可选</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>② 工作原理（照图的流程）</strong></p>
+<pre tabindex="0"><code>搜索请求（anns_field=vector, limit=10）
+  → 对 vector 字段进行索引
+      → 数据结构 + 量化
+      → 查找超过 topK 的候选项（TopK × 扩展率）
+      → 精炼器优化搜索结果
+  → 返回精炼结果 TopK
+</code></pre><ul>
+<li>先捞出比 topK 更多的候选（<strong>扩展率</strong>放大），再交给精炼器精排，最后返回 topK —— 这就是「效率与准确性平衡」的具体做法。</li>
+<li>搜索参数里 <code>anns_field</code> 指定在哪个向量字段检索，<code>limit</code> 是返回数量（教程示例 <code>limit=10</code>）。</li>
+</ul>
+<p><strong>③ 教程补充（图以外的点）</strong></p>
+<ul>
+<li>Milvus 支持标量字段索引（<code>INVERTED</code>、<code>BITMAP</code>，加速元数据过滤）和向量字段索引（核心）。</li>
+<li>主要向量索引类型：FLAT（100% 召回、最准）、IVF 系列（先聚类分桶再桶内搜，召回非 100%）、HNSW（图索引，快且召回高但吃内存）、DiskANN（SSD 优化，延迟稍高）。</li>
+<li>选索引是在<strong>数据规模、内存、查询性能、召回率</strong>之间权衡，没有唯一答案。</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>暂无实操踩坑（这是截图笔记）。</li>
+<li>和上一记呼应：第 12 记讲召回率，这里「精炼器」和「扩展率」就是<strong>用召回换精确</strong>的实操手段 —— 先多捞（保召回），再精排（提精确）。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>量化的具体算法（SQ8 / PQ 等）怎么压向量、精度损失多少。</li>
+<li>扩展率具体怎么设、设多大合适。</li>
+<li>HNSW 的 <code>M</code>、<code>efConstruction</code>、<code>ef</code> 三个参数分别怎么影响召回和延迟（教程示例里出现过，没细看）。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-14-记2026-11-23--代码答疑合集索引名词与图像处理">第 14 记｜2026-11-23 · 代码答疑合集：索引名词与图像处理</h3>
+<blockquote>
+<p>依据：这一轮看代码时的答疑，都归在 Task 3。前两个是第 13 记「索引类型」表的展开，后几个是检索结果可视化代码里碰到的图像处理小知识。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>两个索引名词：<strong>IVF（倒排文件索引）</strong> 和 <strong>HNSW</strong> 的全称、原理、关键参数。</li>
+<li>图像可视化的四块小知识：<code>panoramic_width</code> 的拼接算法、<code>np.full</code> 造白画布、<code>[:, :, ::-1]</code> 通道倒序、<code>.eval()</code> 的作用。</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 倒排文件索引（IVF, Inverted File Index）</strong></p>
+<p>借的是搜索引擎「倒排索引」的思路：正排是「文档 → 词」，倒排是「词 → 哪些文档」。放到向量上：</p>
+<table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th>做什么</th>
+          <th>类比</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1. 聚类分桶</td>
+          <td>用 k-means 把向量分成 <code>nlist</code> 个桶，每桶一个中心点</td>
+          <td>把书按主题分到书架</td>
+      </tr>
+      <tr>
+          <td>2. 建倒排表</td>
+          <td>记录「桶 → 里面有哪些向量」</td>
+          <td>每个书架的藏书清单</td>
+      </tr>
+      <tr>
+          <td>3. 查询</td>
+          <td>算查询向量跟各<strong>桶中心</strong>的距离，挑最近的 <code>nprobe</code> 个桶</td>
+          <td>先定位到相关书架</td>
+      </tr>
+      <tr>
+          <td>4. 精搜</td>
+          <td>只在这几个桶里做精确相似度计算</td>
+          <td>只在这几个书架找书</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>参数：<code>nlist</code> = 桶数；<code>nprobe</code> = 查询搜几个桶。<strong><code>nprobe</code> 越大召回越高但越慢</strong>（接第 12 记召回率）——相关向量落在没搜的桶里就漏了，所以 IVF 召回不是 100%。</li>
+</ul>
+<p><strong>② HNSW（Hierarchical Navigable Small World，分层可导航小世界图）</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>词</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Hierarchical 分层</td>
+          <td>图分多层，像跳表：上层稀疏、下层密集，从顶层定位、逐层精细</td>
+      </tr>
+      <tr>
+          <td>Navigable 可导航</td>
+          <td>每个节点知道自己的邻居，搜索像顺着路网跳</td>
+      </tr>
+      <tr>
+          <td>Small World 小世界</td>
+          <td>任意两点几步可达（六度分隔那个「小世界」）</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>快的原因：从顶层入口出发，每次跳到「离目标更近」的邻居，像贪心爬山；上层跨大步、下层精定位。</li>
+<li>参数：<code>M</code> = 每节点最大连接数（越准但越吃内存）；<code>efConstruction</code> = 建索引时搜索范围（质量高但慢）；<strong><code>ef</code> = 查询时遍历深度（越大召回越高但越慢）</strong> —— 跟 IVF 的 <code>nprobe</code> 是同类角色。</li>
+<li>记法：<strong>HNSW = 分层小世界图，靠跳邻居快速逼近；<code>ef</code> 调召回，<code>M</code> 调内存。</strong></li>
+</ul>
+<p><strong>③ 图像拼图：panoramic 不是 360° 全景</strong></p>
+<p>在这段代码里 <code>panoramic</code> 是「把多张小图拼成一张大图」：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>panoramic_width  <span style="color:#f92672">=</span> img_width  <span style="color:#f92672">*</span> row_count
+</span></span><span style="display:flex;"><span>panoramic_height <span style="color:#f92672">=</span> img_height <span style="color:#f92672">*</span> row_count
+</span></span></code></pre></div><p>宽高都乘 <code>row_count</code> → 拼成 <code>row_count × row_count</code> 的网格（如 3×3）。</p>
+<p><strong>④ <code>np.full</code> 造白画布</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>panoramic_image <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>full((panoramic_height, panoramic_width, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">255</span>, dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint8)
+</span></span></code></pre></div><p>创建一个所有像素填 <strong>255（白）</strong> 的 RGB 图像数组：<code>(高, 宽, 3)</code> = 图像形状，3 通道；<code>dtype=np.uint8</code> = 像素 0–255 的标准类型。后面把检索到的图贴上去，没贴到的地方留白。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>query_display_area <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>full((panoramic_height, img_width, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">255</span>, dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint8)
+</span></span></code></pre></div><p>另一块白布：高度同大图、宽度只有一张图宽 → 像是旁边留一条竖栏放查询文字/说明。</p>
+<p><strong>⑤ <code>[:, :, ::-1]</code> 通道倒序（RGB → BGR）</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>query_pil <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(query_image_path)<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#34;RGB&#34;</span>)   <span style="color:#75715e"># PIL：RGB</span>
+</span></span><span style="display:flex;"><span>query_cv  <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(query_pil)[:, :, ::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]              <span style="color:#75715e"># 转成 BGR 给 OpenCV</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th>切片</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>[行, 列, 通道]</code></td>
+          <td>三维数组三个轴</td>
+      </tr>
+      <tr>
+          <td><code>:</code> / <code>:</code></td>
+          <td>行、列全取</td>
+      </tr>
+      <tr>
+          <td><code>::-1</code></td>
+          <td>通道轴从后往前取，倒序 → <code>[R,G,B]</code> 变 <code>[B,G,R]</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>原因：<strong>PIL 用 RGB，OpenCV 用 BGR</strong>（历史遗留），不转的话 <code>cv2.imshow</code> / <code>imwrite</code> / <code>putText</code> 显示会偏色（红蓝互换）。反过来转 PIL 再倒一次：<code>Image.fromarray(cv_img[:, :, ::-1])</code>。小坑：<code>[:, :, ::-1]</code> 是视图不是拷贝，要修改就加 <code>.copy()</code>。</p>
+<p><strong>⑥ <code>.eval()</code> 是 PyTorch 的评估模式</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#f92672">.</span>eval()              <span style="color:#75715e"># 切到评估/推理模式</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():     <span style="color:#75715e"># 不计算梯度，省显存加速</span>
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> model(input)
+</span></span></code></pre></div><ul>
+<li><code>eval()</code> 关掉训练时的两个行为：<strong>Dropout</strong>（不再随机丢神经元）、<strong>BatchNorm</strong>（用全局统计而非当前 batch）。</li>
+<li>目的：推理结果稳定可复现；不调也能跑，但同输入每次结果可能不同。</li>
+<li>别和 Python 内置函数 <code>eval(&quot;1+2&quot;)</code> 搞混——那个是把字符串当代码执行，带风险，跟模型无关。</li>
+</ul>
+<p><strong>⑦ 检索结果可视化：把查询图贴进竖栏并打标签</strong></p>
+<p>接着④⑤，这段把「查询图」处理完贴进 <code>query_display_area</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>resized_query <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>resize(query_cv, (img_width, img_height))                    <span style="color:#75715e"># 统一尺寸</span>
+</span></span><span style="display:flex;"><span>bordered_query <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>copyMakeBorder(resized_query, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>                                    cv2<span style="color:#f92672">.</span>BORDER_CONSTANT, value<span style="color:#f92672">=</span>(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>))     <span style="color:#75715e"># 加边框</span>
+</span></span><span style="display:flex;"><span>query_display_area[img_height <span style="color:#f92672">*</span> (row_count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>):, :] <span style="color:#f92672">=</span> \
+</span></span><span style="display:flex;"><span>    cv2<span style="color:#f92672">.</span>resize(bordered_query, (img_width, img_height))                          <span style="color:#75715e"># 贴到底部那块</span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>putText(query_display_area, <span style="color:#e6db74">&#34;Query&#34;</span>, (<span style="color:#ae81ff">10</span>, panoramic_height <span style="color:#f92672">-</span> <span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>            cv2<span style="color:#f92672">.</span>FONT_HERSHEY_SIMPLEX, <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">2</span>)                         <span style="color:#75715e"># 写标签</span>
+</span></span></code></pre></div><p>逐个说：</p>
+<ul>
+<li><strong><code>cv2.resize</code></strong>：统一成 <code>img_width × img_height</code>，才能贴进固定大小的格子。第二个参数是 <strong><code>(宽, 高)</code></strong>，跟 numpy 的 <code>(高, 宽, 通道)</code> 顺序相反，别写反。缩小时可指定 <code>interpolation=cv2.INTER_AREA</code> 更清晰。</li>
+<li><strong><code>cv2.copyMakeBorder(..., 10,10,10,10, cv2.BORDER_CONSTANT, value=(255,0,0))</code></strong>：上下左右各加 10px 边框，纯色填充（<code>BORDER_CONSTANT</code>）；其他模式还有 <code>BORDER_REPLICATE</code>（复制边缘）、<code>BORDER_REFLECT</code>（镜像）。给查询图加框是为了在结果里一眼认出来。</li>
+<li><strong><code>query_display_area[img_height*(row_count-1):, :]</code></strong>：竖栏的最后一块（高度正好 <code>img_height</code>，宽度全取）；把带框的查询图 resize 回格子大小贴进去。resize 回去时边框也一起被压缩，会变细但还在。</li>
+<li><strong><code>cv2.putText</code></strong>：在图上写字。参数依次是：图、<code>&quot;Query&quot;</code>、<code>(x,y)</code> 坐标（<strong>文字左下角</strong>，原点在左上角）、字体 <code>FONT_HERSHEY_SIMPLEX</code>、<strong>缩放倍数</strong> <code>1</code>、颜色 <code>(255,0,0)</code>、线宽 <code>2</code>。
+<ul>
+<li><code>putText</code> 没有「默认字号」，那个 <code>1</code> 就是必须传的 fontScale；<code>SIMPLEX</code> 在 scale=1 时字高约 20px，<code>2</code> 就是两倍，可传小数。</li>
+<li>精确控制像素高度：先 <code>cv2.getTextSize(&quot;Query&quot;, font, 1, 2)</code> 量出 <code>(text_w, text_h)</code>，再 <code>scale = 目标高度 / text_h</code> 反推。加 <code>cv2.LINE_AA</code> 抗锯齿更平滑。</li>
+<li>字放大后注意别超出图边界被裁掉，用 <code>text_w</code> 检查右侧空间。</li>
+</ul>
+</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>概念坑：<code>panoramic</code> 在这段代码里不是「360° 全景图」，是「拼图」——看词之前先看上下文。</li>
+<li>参数对照记牢：IVF 的 <code>nprobe</code> 和 HNSW 的 <code>ef</code> 都是「查询时多搜一点 → 召回高但慢」，本质是同一个权衡。</li>
+<li>颜色坑又出现一次：<code>value=(255,0,0)</code> 和 <code>putText</code> 的 <code>(255,0,0)</code> 在 BGR 下都是<strong>蓝色</strong>，不是红色；红色要写 <code>(0,0,255)</code>。写颜色前先想「这是给 cv2 的」。</li>
+<li><code>resize</code> 的参数顺序 <code>(宽, 高)</code> 跟数组 <code>(高, 宽)</code> 相反，拼图代码里容易写反。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li><code>nlist</code> / <code>M</code> 具体设多少合适（还没实测调参）。</li>
+<li>图像拼图代码的完整流程已补（resize → 加边框 → 贴底部块 → putText 打标签，见⑦）；竖栏上面几块放什么（推测是查询文字/说明）还没看到完整代码。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
+<h3 id="第-15-记2026-11-23--35-索引优化上下文扩展与结构化索引">第 15 记｜2026-11-23 · 3.5 索引优化：上下文扩展与结构化索引</h3>
+<blockquote>
+<p>依据：本人的学习笔记，对应教程 <code>docs/chapter3/10_index_optimization.md</code>（第 3 章第五节「索引优化」）。<strong>这一记只做了了解，代码没去实现</strong> —— 如实标注，不冒充跑过。</p></blockquote>
+<p><strong>这节学了什么</strong></p>
+<ul>
+<li>索引优化解决的核心矛盾：<strong>小块检索精确但缺上下文（LLM 答不好），大块上下文丰富但引入噪音（检索相关性低）</strong>。</li>
+<li>两条思路，都只做了了解：
+<ol>
+<li><strong>上下文扩展</strong>（句子窗口检索）—— LlamaIndex 提出的策略</li>
+<li><strong>结构化索引</strong> —— 给文本块附加结构化元数据，检索时先过滤再搜</li>
+</ol>
+</li>
+</ul>
+<p><strong>关键笔记 / 代码片段</strong></p>
+<p><strong>① 上下文扩展：句子窗口检索</strong></p>
+<p>一句话思想：<strong>为检索精确性而索引小块，为上下文丰富性而检索大块</strong>。</p>
+<p>三阶段流程：</p>
+<table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>做什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>索引阶段</td>
+          <td>文档切成<strong>单个句子</strong>，每句作为一个 Node 存入向量库；该句的前 N 句 + 后 N 句（默认各 3 句）作为<strong>上下文窗口</strong>存进该 Node 的元数据 —— 窗口文本<strong>不被索引</strong>，只做元数据</td>
+      </tr>
+      <tr>
+          <td>检索阶段</td>
+          <td>用单句做精确匹配（小块 = 高精度）</td>
+      </tr>
+      <tr>
+          <td>后处理阶段</td>
+          <td><code>MetadataReplacementPostProcessor</code> 读取命中节点的元数据，用<strong>完整窗口</strong>替换原来的单句内容，再送给 LLM</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>关键细节：<code>SentenceWindowNodeParser</code> 会把 <code>window</code>、<code>original_text</code> 加进 <code>excluded_embed_metadata_keys</code> / <code>excluded_llm_metadata_keys</code> —— 告诉嵌入模型和 LLM <strong>忽略这两个字段</strong>，保证只用干净的单句做检索。</li>
+<li>效果（教程对比）：句子窗口检索的答案更详尽连贯，会补充「定量预测置信度低」「观测记录过短」等多个维度，信息量更大。</li>
+</ul>
+<p><strong>② 结构化索引：元数据过滤 + 递归检索</strong></p>
+<ul>
+<li>原理：索引文本块时附加<strong>结构化元数据</strong>（文档类型、年份、季度、标题等），检索时把<strong>元数据过滤</strong>和<strong>向量搜索</strong>结合。</li>
+<li>接第 07 记：第 2 章的 <code>MarkdownHeaderTextSplitter</code> 把标题提取进元数据，就是结构化索引的前置步骤。</li>
+<li>Example：查「2023 年 Q2 财报里关于 AI 的论述」→ 先按 <code>document_type='财报'</code>、<code>year=2023</code>、<code>quarter='Q2'</code> 预过滤，再在子集里做向量搜索。</li>
+<li><strong>递归检索</strong>（多表格场景，如 Excel 多个 Sheet）：
+<ul>
+<li>建两个索引：<strong>摘要索引</strong>（每个 Sheet 一句话摘要，充当路由器）+ <strong>内容索引</strong>（实际数据，附 <code>{&quot;sheet_name&quot;: &quot;年份_1994&quot;}</code> 元数据）</li>
+<li>查询两步：<strong>先路由</strong>（在摘要索引里匹配到目标 Sheet）→ <strong>后检索</strong>（用 <code>MetadataFilter</code> 强制只在该 Sheet 里搜）</li>
+<li>核心组件 <code>RecursiveRetriever</code>，用 <code>query_engine_dict</code> 把节点 ID（工作表名）映射到对应的查询引擎</li>
+<li>教程还给了「不走代码执行」的另一种实现：摘要索引路由 + 内容索引元数据过滤，避免执行代码的安全隐患</li>
+</ul>
+</li>
+</ul>
+<p><strong>踩坑与解决</strong></p>
+<ul>
+<li>这节<strong>代码没实现</strong>，所以没有实操踩坑 —— 只有概念层面的理解，别当成「跑通了」。</li>
+<li>一个明确的分工记牢：<code>excluded_embed_metadata_keys</code> 管「嵌入时忽略哪些元数据」，<code>excluded_llm_metadata_keys</code> 管「送 LLM 时忽略哪些」—— 两者都排除 window，才能做到「索引小块、生成大块」。</li>
+</ul>
+<p><strong>没搞懂 / 下次再看</strong></p>
+<ul>
+<li>两个策略的<strong>代码都没跑</strong>，<code>SentenceWindowNodeParser</code> / <code>MetadataReplacementPostProcessor</code> / <code>RecursiveRetriever</code> 只看了教程，没验证效果。</li>
+<li><code>window_size</code> 默认 3 句，设多大合适没实测。</li>
+<li>递归检索的两种实现（代码执行 vs 摘要索引 + 元数据过滤）差异还没对比。</li>
+<li>教程末尾「题外话：关于框架」没细看。</li>
+</ul>
+<p><strong>一句话</strong></p>
+<ul>
+<li>待补（留给你自己写）</li>
+</ul>
 <h2 id="3-结课复盘最后写">3. 结课复盘（最后写）</h2>
 <ul>
 <li>最大的收获：</li>
@@ -929,6 +1582,13 @@ openai.APIConnectionError: Connection error.
         <li><a href="#第-06-记2026-11-19--21-数据加载unstructured-与-pdf-解析策略">第 06 记｜2026-11-19 · 2.1 数据加载：Unstructured 与 PDF 解析策略</a></li>
         <li><a href="#第-07-记2026-11-20--22-文本分块上下文限制与池化的信息损失">第 07 记｜2026-11-20 · 2.2 文本分块：上下文限制与池化的信息损失</a></li>
         <li><a href="#第-08-记2026-11-20--task-2-任务发布第-2-章数据准备">第 08 记｜2026-11-20 · Task 2 任务发布：第 2 章数据准备</a></li>
+        <li><a href="#第-09-记2026-11-21--完整任务时间表进入-task-3-索引构建">第 09 记｜2026-11-21 · 完整任务时间表，进入 Task 3 索引构建</a></li>
+        <li><a href="#第-10-记2026-11-21--31-向量嵌入嵌入模型与-mteb-选型">第 10 记｜2026-11-21 · 3.1 向量嵌入：嵌入模型与 MTEB 选型</a></li>
+        <li><a href="#第-11-记2026-11-22--32-多模态嵌入矩阵乘法与向量库练习">第 11 记｜2026-11-22 · 3.2 多模态嵌入：矩阵乘法与向量库练习</a></li>
+        <li><a href="#第-12-记2026-11-23--milvus-环境权限坑与召回率">第 12 记｜2026-11-23 · Milvus 环境权限坑与召回率</a></li>
+        <li><a href="#第-13-记2026-11-23--milvus-向量索引的结构分析截图笔记">第 13 记｜2026-11-23 · Milvus 向量索引的结构分析（截图笔记）</a></li>
+        <li><a href="#第-14-记2026-11-23--代码答疑合集索引名词与图像处理">第 14 记｜2026-11-23 · 代码答疑合集：索引名词与图像处理</a></li>
+        <li><a href="#第-15-记2026-11-23--35-索引优化上下文扩展与结构化索引">第 15 记｜2026-11-23 · 3.5 索引优化：上下文扩展与结构化索引</a></li>
       </ul>
     </li>
     <li><a href="#3-结课复盘最后写">3. 结课复盘（最后写）</a></li>
